@@ -1,10 +1,10 @@
 class DesignsController < ApplicationController
-  before_action :set_design, only: [:show, :edit, :update, :destroy]
+  # before_action :set_design, only: [:show, :edit, :update, :destroy]
 
   # from FRAGA
 
   before_action :check_if_admin, only: [:edit, :destroy]
-  before_action :check_if_logged_in, except: [ :show]
+  # before_action :check_if_logged_in, except: [ :show]
 
 
   # GET /designs
@@ -16,6 +16,8 @@ class DesignsController < ApplicationController
   # GET /designs/1
   # GET /designs/1.json
   def show
+    @design = Design.find(params[:id])
+
   end
 
   # GET /designs/new
@@ -88,9 +90,9 @@ class DesignsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_design
-      @design = Design.find(params[:id])
-    end
+    # def set_design
+    #   @design = Design.find(params[:id])
+    # end
 
     def design_params
       params.require(:design).permit( :user_id)

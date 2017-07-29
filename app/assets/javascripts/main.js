@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
-  var canvas = new fabric.Canvas('c', { selection: false });
+//
+  var canvas = new fabric.Canvas('mainCanvas', { selection: false });
   var grid = 25;
 
   //handler for moving objects on canvas
@@ -72,13 +72,12 @@ $(document).ready(function(){
   	});
 
 
-  $("#e").click(function(){
-  	$("#c").get(0).toBlob(function(blob){
+  $("#save").click(function(){
+  	$("#canvas").get(0).toBlob(function(blob){
   		saveAs(blob, "myIMG.jpeg");
-
-
   	});
   });
+
 
   $("#heart").click(function(){
 
@@ -94,51 +93,20 @@ $(document).ready(function(){
 
   	});
 
-  $("#calendarBox").click(function(){
-  	// $("#c").get(0).toBlob(function(blob){
-  		// saveAs(blob, "myIMG.png");
 
-      // var triangle = new fabric.Triangle({
-      //   width: 20, height: 30, fill: 'blue', left: 50, top: 50
-      // });
-      // canvas.add(triangle);
 
-      var imgElement = document.getElementById('calendarBox');
-      var imgInstance = new fabric.Image(imgElement,{
-        left: 100,
-        top: 100,
-        width: 130,
-        height: 150
+  $(".flourishes").click(function(){
+    // debugger;
+      var imgElement = event.target.id;
+      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+imgElement+".png";
 
+      fabric.Image.fromURL(src, function(oImg){
+        oImg.scale(.2);
+        canvas.add(oImg);
       });
-      canvas.add(imgInstance)
 
   	});
-  $("#box").click(function(){
-  	// $("#c").get(0).toBlob(function(blob){
-  		// saveAs(blob, "myIMG.png");
 
-      // var triangle = new fabric.Triangle({
-      //   width: 20, height: 30, fill: 'blue', left: 50, top: 50
-      // });
-      // canvas.add(triangle);
-
-      var imgElement = document.getElementById('box');
-      var imgInstance = new fabric.Image(imgElement,{
-        left: 100,
-        top: 100,
-        width: 130,
-        height: 150
-
-      });
-      canvas.add(imgInstance)
-
-  	});
-  // });
-  //
-  // $( h1 ).click(function() {
-  //   alert( "Handler for .click() called." );
-  // });
 
   // delete
 
@@ -174,4 +142,24 @@ $(document).ready(function(){
       top: Math.round(options.target.top / grid) * grid
     });
   });
+
+
+
+  //design show page
+    console.log('working??');
+
+
+
+    var imgElementShow = document.getElementById('USE');
+    var imgInstanceShow = new fabric.Image(imgElementShow, {
+      left: 100,
+      top: 100,
+    });
+
+    canvas.add(imgInstanceShow);
+
+
+
+
+
 }); // end of document ready

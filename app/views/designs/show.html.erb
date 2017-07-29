@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<!-- <p>
   <strong>Image:</strong>
   <%= @design.image %>
-</p>
+</p> -->
 
-<p>
+<canvas id="mainCanvas" width="1000" height="600"></canvas>
+<img src="http://res.cloudinary.com/michelleerica/image/upload/v1501323263/banner-small_yxirbx.png" id="USE">
+
   <strong>User:</strong>
   <%= @design.user_id %>
+</p>
+<p>
+  <strong>Elements:</strong>
+
+  <%@design.elements.each do |e|%>
+<div id="element"><%= e.tlx%></div>
+
+  <%end%>
 </p>
 
 <%= link_to 'Edit', edit_design_path(@design) %> |
