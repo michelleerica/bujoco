@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170729044329) do
   create_table "flourishes", force: :cascade do |t|
     t.string   "category"
     t.string   "location_storage"
+    t.string   "name"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

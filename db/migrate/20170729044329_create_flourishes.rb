@@ -3,6 +3,7 @@ class CreateFlourishes < ActiveRecord::Migration[5.0]
     create_table :flourishes do |t|
       t.string :category
       t.string :location_storage
+      t.string :name
 
       t.timestamps
     end

@@ -21,6 +21,8 @@ class DesignsController < ApplicationController
   # GET /designs/new
   def new
     @design = Design.new
+    @flourishes = Flourish.all
+
   end
 
   # GET /designs/1/edit
@@ -32,6 +34,13 @@ class DesignsController < ApplicationController
   def create
     @design = Design.new(design_params)
 
+
+     if params[:file].present?
+       # Then call Cloudinary's upload method, passing in the file in params
+       req = Cloudinary::Uploader.upload(params[:file])
+       # Using the public_id allows us to use Cloudinary's powerful image transformation methods.
+     @design.image = req["public_id"]
+
     respond_to do |format|
       if @design.save
         format.html { redirect_to @design, notice: 'Design was successfully created.' }
@@ -41,11 +50,21 @@ class DesignsController < ApplicationController
         format.json { render json: @design.errors, status: :unprocessable_entity }
       end
     end
+
+     @design.save
+     redirect_to designs_path(design)
+
   end
 
   # PATCH/PUT /designs/1
   # PATCH/PUT /designs/1.json
   def update
+
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @design.image = req["public_id"]
+    end
+
     respond_to do |format|
       if @design.update(design_params)
         format.html { redirect_to @design, notice: 'Design was successfully updated.' }
@@ -74,6 +93,7 @@ class DesignsController < ApplicationController
     end
 
     def design_params
-      params.require(:design).permit(:image, :user_id)
+      params.require(:design).permit( :user_id)
     end
+  end
 end
