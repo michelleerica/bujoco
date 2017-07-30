@@ -131,36 +131,30 @@ $(document).ready(function(){
 
 
 
-  //design show page
+  //---------------------design show page---------------------//
     console.log('working??');
-
-  // move handler: left:  725 top:  125 height:  0.47602989559409975 width:  0.39276054560317036 angle:  90.96256694331598
 
     // debugger;
 
+    //rebuild existing design with element as saved in DB
+    //use elements details (e.g. img, width, height etc) hidden on design show page and add to canvas
     var $imgElementShow =$('.flourish');
 
 
     for (var i = 0; i < $imgElementShow.length; i++) {
-      debugger;
-      var name = $imgElementShow[i].alt;
-
+      var name = "#name" + i;
       ///may break if there is no space in name.... consider using if statement with a break to resolve
-      name = name.split(' ').join('-')
-      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+name+".png";
+
+      //new src bc element hidden is smaller)
+      // name = name.split(' ').join('-')
+      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
       var left = "#left" + i;
       var top = "#top" + i;
       var width = "#width" + i;
       var height = "#height" + i;
       var angle = "#angle" + i;
-      //
-      // var imgInstanceShow = new fabric.Image(src, {
-      //   left: parseInt($(left).text()),
-      //   top: parseInt($(top).text()),
-      //   width: parseInt($(width).text()),
-      //   height: parseInt($(height).text()),
-      //   angle: parseInt($(angle).text())
+
 
       fabric.Image.fromURL(src,
         function(showImg){
@@ -170,10 +164,6 @@ $(document).ready(function(){
           showImg.setHeight(parseInt($(height).text())),
           showImg.setAngle(parseInt($(angle).text())),
 
-          // top: parseInt($(top).text()),
-          // width: parseInt($(width).text()),
-          // height: parseInt($(height).text()),
-          // angle: parseInt($(angle).text())
           canvas.add(showImg);
 
         })

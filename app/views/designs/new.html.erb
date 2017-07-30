@@ -18,6 +18,9 @@
       <img src="../box.png" id="box" width="40" height="40">
       <img src="../calendarBox.png" id="calendarBox" width="40" height="40">
 
+      <!-- <#% @flourishes.order('category').each do |f| %> -->
+
+
       <%@flourishes.each do |f|%>
       <%location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
         <%= (cl_image_tag location, :id => f.name)%>

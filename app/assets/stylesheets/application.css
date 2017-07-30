@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+
+ div.hidden { display: none; }
