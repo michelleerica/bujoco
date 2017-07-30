@@ -7,7 +7,7 @@ $(document).ready(function(){
   var moveHandler = function (evt) {
     var movingObject = evt.target;
     console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
-    // debugger;
+    debugger;
   };
 
   //handler for done modifying objects on canvas
@@ -144,20 +144,19 @@ $(document).ready(function(){
   });
 
 
-
-  //design show page
-    console.log('working??');
-
-
-
-    var imgElementShow = document.getElementById('USE');
-    var imgInstanceShow = new fabric.Image(imgElementShow, {
-      left: 100,
-      top: 100,
-    });
-
-    canvas.add(imgInstanceShow);
-
+  //
+  // //design show page
+  //   console.log('working??');
+  //
+  //
+  //
+  //   var imgElementShow = document.getElementById('USE');
+  //   var imgInstanceShow = new fabric.Image(imgElementShow, {
+  //     aCoords.set('aCoords'): 0
+  //   });
+  //
+  //   canvas.add(imgInstanceShow);
+  //
 
 
 

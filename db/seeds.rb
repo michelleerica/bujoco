@@ -33,7 +33,7 @@ f8 = Flourish.create category:"banner", location_storage:"banner-small_yxirbx ",
 
 f8 = Flourish.create category:"banner", location_storage:"banner-wide", name:"banner-wide"
 
-f9 = Flourish.create category:"scribbles", location_storage:"flowers-three", name:"flowers-three"
+f9 = Flourish.create category:"scribbles", location_storage:"flowers_three", name:"flowers_three"
 
 f10 = Flourish.create category:"divider", location_storage:"divider-short", name:"divider-short"
 
@@ -54,6 +54,45 @@ f17 = Flourish.create category:"scribbles", location_storage:"frame-small", name
 f18 = Flourish.create category:"scribbles", location_storage:"frame-round", name:"frame-round"
 
 f19 = Flourish.create category:"scribbles", location_storage:"little-flower-alt", name:"little-flower-alt"
+
+f20 = Flourish.create category:"month", location_storage:"january", name:"january"
+
+f21 = Flourish.create category:"month", location_storage:"february", name:"february"
+
+f22 = Flourish.create category:"month", location_storage:"march", name:"march"
+
+f23 = Flourish.create category:"month", location_storage:"april", name:"april"
+
+f24 = Flourish.create category:"month", location_storage:"may", name:"may"
+
+f25 = Flourish.create category:"month", location_storage:"june", name:"june"
+
+f26 = Flourish.create category:"month", location_storage:"july", name:"july"
+
+f27 = Flourish.create category:"month", location_storage:"august", name:"august"
+
+f28 = Flourish.create category:"month", location_storage:"september", name:"september"
+
+f29 = Flourish.create category:"month", location_storage:"october", name:"october"
+
+f30 = Flourish.create category:"month", location_storage:"november", name:"november"
+
+f31 = Flourish.create category:"month", location_storage:"december", name:"december"
+
+f32 = Flourish.create category:"day", location_storage:"sunday", name:"sunday"
+
+f34 = Flourish.create category:"day", location_storage:"monday", name:"monday"
+
+f35 = Flourish.create category:"day", location_storage:"tuesday", name:"tuesday"
+
+f36 = Flourish.create category:"day", location_storage:"wednesday", name:"wednesday"
+
+f37 = Flourish.create category:"day", location_storage:"thursday", name:"thursday"
+
+f38 = Flourish.create category:"day", location_storage:"friday", name:"friday"
+
+f39 = Flourish.create category:"day", location_storage:"saturday", name:"saturday"
+
 
 # Elements
 e1 = Element.create blx:0, bly:60, brx:472, bry:60, tlx:0, tly:25, trx:472, try:25
