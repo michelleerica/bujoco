@@ -6,8 +6,11 @@ $(document).ready(function(){
   //handler for moving objects on canvas
   var moveHandler = function (evt) {
     var movingObject = evt.target;
+    if (movingObject === null) {
+      return
+    };
     console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
-    debugger;
+    // debugger;
   };
 
   //handler for done modifying objects on canvas
@@ -78,23 +81,6 @@ $(document).ready(function(){
   	});
   });
 
-
-  $("#heart").click(function(){
-
-      var imgElement = document.getElementById('heart');
-      var imgInstance = new fabric.Image(imgElement,{
-        left: 100,
-        top: 100,
-        width: 20,
-        height: 20
-
-      });
-      canvas.add(imgInstance)
-
-  	});
-
-
-
   $(".flourishes").click(function(){
     // debugger;
       var imgElement = event.target.id;
@@ -144,21 +130,64 @@ $(document).ready(function(){
   });
 
 
-  //
-  // //design show page
-  //   console.log('working??');
-  //
-  //
-  //
-  //   var imgElementShow = document.getElementById('USE');
-  //   var imgInstanceShow = new fabric.Image(imgElementShow, {
-  //     aCoords.set('aCoords'): 0
-  //   });
-  //
-  //   canvas.add(imgInstanceShow);
-  //
+
+  //design show page
+    console.log('working??');
+
+  // move handler: left:  725 top:  125 height:  0.47602989559409975 width:  0.39276054560317036 angle:  90.96256694331598
+
+    // debugger;
+
+    var $imgElementShow =$('.flourish');
 
 
+    for (var i = 0; i < $imgElementShow.length; i++) {
+      debugger;
+      var name = $imgElementShow[i].alt;
+
+      ///may break if there is no space in name.... consider using if statement with a break to resolve
+      name = name.split(' ').join('-')
+      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+name+".png";
+
+      var left = "#left" + i;
+      var top = "#top" + i;
+      var width = "#width" + i;
+      var height = "#height" + i;
+      var angle = "#angle" + i;
+      //
+      // var imgInstanceShow = new fabric.Image(src, {
+      //   left: parseInt($(left).text()),
+      //   top: parseInt($(top).text()),
+      //   width: parseInt($(width).text()),
+      //   height: parseInt($(height).text()),
+      //   angle: parseInt($(angle).text())
+
+      fabric.Image.fromURL(src,
+        function(showImg){
+          showImg.setLeft(parseInt($(left).text())),
+          showImg.setTop(parseInt($(top).text())),
+          showImg.setWidth(parseInt($(width).text())),
+          showImg.setHeight(parseInt($(height).text())),
+          showImg.setAngle(parseInt($(angle).text())),
+
+          // top: parseInt($(top).text()),
+          // width: parseInt($(width).text()),
+          // height: parseInt($(height).text()),
+          // angle: parseInt($(angle).text())
+          canvas.add(showImg);
+
+        })
+      // })
+        // height: 0.476,
+        // width: 0.393
+        // debugger;
+
+  // debugger;
+      // canvas.add(imgInstanceShow);
+    // }
+    // imgElementShow.width = 0.39276054560317036
+    // var left = parseInt($('#left').text());
 
 
+}
 }); // end of document ready

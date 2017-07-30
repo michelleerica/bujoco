@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729044329) do
+ActiveRecord::Schema.define(version: 20170730064436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,11 @@ ActiveRecord::Schema.define(version: 20170729044329) do
   create_table "elements", force: :cascade do |t|
     t.integer  "design_id"
     t.integer  "flourish_id"
-    t.integer  "tlx"
-    t.integer  "tly"
-    t.integer  "trx"
-    t.integer  "try"
-    t.integer  "brx"
-    t.integer  "bry"
-    t.integer  "blx"
-    t.integer  "bly"
+    t.float    "left"
+    t.float    "top"
+    t.float    "width"
+    t.float    "height"
+    t.float    "angle"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

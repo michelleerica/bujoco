@@ -93,11 +93,27 @@ f38 = Flourish.create category:"day", location_storage:"friday", name:"friday"
 
 f39 = Flourish.create category:"day", location_storage:"saturday", name:"saturday"
 
+f40 = Flourish.create category:"border", location_storage:"border-hearts", name:"border-hearts"
+
+f41 = Flourish.create category:"border", location_storage:"border-sunshine", name:"border-sunshine"
+
+f42 = Flourish.create category:"border", location_storage:"border-dashed", name:"border-dashed"
+
+f43 = Flourish.create category:"quote", location_storage:"quote-poodles", name:"quote-poodles"
+
 
 # Elements
-e1 = Element.create blx:0, bly:60, brx:472, bry:60, tlx:0, tly:25, trx:472, try:25
+e1 = Element.create left:75, top:0, width:1000, height:10, angle:47
+e2 = Element.create left:75, top:100, width:300, height:400, angle:0
+
+
 
 f14.elements << e1
+f43.elements << e2
+
+d1.elements << e1 << e2
+
+
 #
 # e1 = Element.create blx: bly: brx: bry: tlx: tly: trx: try:
 #
