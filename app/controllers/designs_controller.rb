@@ -34,14 +34,15 @@ class DesignsController < ApplicationController
   # POST /designs
   # POST /designs.json
   def create
-    @design = Design.new(design_params)
+    @design = @current_user.designs.new#(design_params)
 
 
      if params[:file].present?
        # Then call Cloudinary's upload method, passing in the file in params
        req = Cloudinary::Uploader.upload(params[:file])
        # Using the public_id allows us to use Cloudinary's powerful image transformation methods.
-     @design.image = req["public_id"]
+       @design.image = req["public_id"]
+    end
 
     respond_to do |format|
       if @design.save
@@ -52,9 +53,6 @@ class DesignsController < ApplicationController
         format.json { render json: @design.errors, status: :unprocessable_entity }
       end
     end
-
-     @design.save
-     redirect_to designs_path(design)
 
   end
 
@@ -97,5 +95,5 @@ class DesignsController < ApplicationController
     def design_params
       params.require(:design).permit( :user_id)
     end
-  end
-end
+
+end #DesignsController
