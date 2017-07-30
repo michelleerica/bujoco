@@ -1,9 +1,11 @@
 $(document).ready(function(){
-//
+
+  //------------ create canvas ------------ //
+
   var canvas = new fabric.Canvas('mainCanvas', { selection: false });
   var grid = 25;
 
-  //handler for moving objects on canvas
+  //------------ click events for moving images (used to get location info - can delete upon finalisation but CHECK FIRST) ------------ //
   var moveHandler = function (evt) {
     var movingObject = evt.target;
     if (movingObject === null) {
@@ -13,7 +15,7 @@ $(document).ready(function(){
     // debugger;
   };
 
-  //handler for done modifying objects on canvas
+    //handler for done modifying objects on canvas
   var modifiedHandler = function (evt) {
       var modifiedObject = evt.target;
       console.log('modified handler:' +  modifiedObject.get('left'), modifiedObject.get('top'));
@@ -30,24 +32,13 @@ $(document).ready(function(){
   });
 
 
-// create grid
+ //------------ create grid ------------ //
 
   for (var i = 0; i < (1000 / grid); i++) {
     canvas.add(new fabric.Line([ i * grid, 0, i * grid, 1000], { stroke: '#ccc', selectable: false }));
     canvas.add(new fabric.Line([ 0, i * grid, 1000, i * grid], { stroke: '#ccc', selectable: false }))
   }
 
-  // create a rectangle object
-  var rect = new fabric.Rect({
-  left: 100,
-  top: 100,
-  fill: 'red',
-  width: 20,
-  height: 20,
-  angle: 45
-
-
-  });
 
   // adding text
   // var text = new fabric.Text('Text inside canvas', {
@@ -57,12 +48,8 @@ $(document).ready(function(){
   // text.hasRotatingPoint = true;
   // canvas.add(text);
 
-  // "add" rectangle onto canvas
-  canvas.add(rect);
-  rect.set({ left: 20, top: 50 });
-  canvas.renderAll();
 
-
+  //------------ draw circle ------------ //
 
   $("#b").click(function(){
 
@@ -74,6 +61,7 @@ $(document).ready(function(){
 
   	});
 
+    //------------ save canvas  as png ------------ //
 
   $("#save").click(function(){
   	$("#canvas").get(0).toBlob(function(blob){
@@ -81,6 +69,8 @@ $(document).ready(function(){
   	});
   });
 
+  //------------ click event for flourishes ------------ //
+  // when flourish clicked, flourish added to canvas
   $(".flourishes").click(function(){
     // debugger;
       var imgElement = event.target.id;
@@ -93,8 +83,7 @@ $(document).ready(function(){
 
   	});
 
-
-  // delete
+    //------------ delete element from canvas ------------ //
 
   $("#delete").click(function(){
     canvas.isDrawingMode = false;
@@ -120,8 +109,8 @@ $(document).ready(function(){
       }
   }
 
-
-  // snap to grid
+  //------------ snap to grid ------------ //
+  // snap to grid (position # is rounded so images are aligned)
   canvas.on('object:moving', function(options) {
     options.target.set({
       left: Math.round(options.target.left / grid) * grid,
@@ -129,55 +118,39 @@ $(document).ready(function(){
     });
   });
 
-
-
   //---------------------design show page---------------------//
     console.log('working??');
 
     // debugger;
 
     //rebuild existing design with element as saved in DB
-    //use elements details (e.g. img, width, height etc) hidden on design show page and add to canvas
-    var $imgElementShow =$('.flourish');
+    //use elements details (e.g. img, width, height etc) hidden on design show page in flourish div and add to canvas
+  var $imgElementShow =$('.flourish');
 
+    //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
+  for (var i = 0; i < $imgElementShow.length; i++) {
+    var name = "#name" + i;
+    ///may break if there is no space in name.... consider using if statement with a break to resolve
 
-    for (var i = 0; i < $imgElementShow.length; i++) {
-      var name = "#name" + i;
-      ///may break if there is no space in name.... consider using if statement with a break to resolve
+    var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
-      //new src bc element hidden is smaller)
-      // name = name.split(' ').join('-')
-      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
+    var left = "#left" + i;
+    var top = "#top" + i;
+    var width = "#width" + i;
+    var height = "#height" + i;
+    var angle = "#angle" + i;
 
-      var left = "#left" + i;
-      var top = "#top" + i;
-      var width = "#width" + i;
-      var height = "#height" + i;
-      var angle = "#angle" + i;
+    fabric.Image.fromURL(src, function(showImg){
+      showImg.setLeft(parseInt($(left).text())),
+      showImg.setTop(parseInt($(top).text())),
+      showImg.setWidth(parseInt($(width).text())),
+      showImg.setHeight(parseInt($(height).text())),
+      showImg.setAngle(parseInt($(angle).text())),
 
+      canvas.add(showImg);
 
-      fabric.Image.fromURL(src,
-        function(showImg){
-          showImg.setLeft(parseInt($(left).text())),
-          showImg.setTop(parseInt($(top).text())),
-          showImg.setWidth(parseInt($(width).text())),
-          showImg.setHeight(parseInt($(height).text())),
-          showImg.setAngle(parseInt($(angle).text())),
+      })
 
-          canvas.add(showImg);
+  } //for loop
 
-        })
-      // })
-        // height: 0.476,
-        // width: 0.393
-        // debugger;
-
-  // debugger;
-      // canvas.add(imgInstanceShow);
-    // }
-    // imgElementShow.width = 0.39276054560317036
-    // var left = parseInt($('#left').text());
-
-
-}
 }); // end of document ready

@@ -1,5 +1,5 @@
 <h1>New Design</h1>
-<div id="save"><p>save me</p></div>
+<div id="save"><p>save canvas</p></div>
 
 <%= render 'form', design: @design %>
 
@@ -7,22 +7,14 @@
 
 <div id="b"><p>draw a circle</p></div>
 <button id="delete">Delete selected object(s)</button>
-      <!-- canvas -->
-      <canvas id="mainCanvas" width="1000" height="600"></canvas>
-      <h1>test</h1>
+  <!-- canvas -->
+  <canvas id="mainCanvas" width="1000" height="600"></canvas>
 
-            <!-- <canvas id="e" width="800" height="600"></canvas> -->
-    <div class="flourishes">
+  <!--generate flourishes from DB  -->
+  <div class="flourishes">
 
-      <img src="../heart.png" id="heart" width="40" height="40">
-      <img src="../box.png" id="box" width="40" height="40">
-      <img src="../calendarBox.png" id="calendarBox" width="40" height="40">
-
-      <!-- <#% @flourishes.order('category').each do |f| %> -->
-
-
-      <%@flourishes.each do |f|%>
+    <%@flourishes.each do |f|%>
       <%location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.name)%>
-      <%end%>
-    </div>
+      <%= (cl_image_tag location, :id => f.name)%>
+    <%end%>
+  </div>
