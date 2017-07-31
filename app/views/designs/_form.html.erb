@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.cl_image_upload :image %>
-  </div>
 
+  <button type="button" name="TEST" id="saveButton">Publish</button>
+
+  <button type="button" name="TEST" id="save">Save canvas to desktop</button>
+
+  <button type="button" name="TEST" id="WHAT">TEST</button>
+
+
+  <div id='saveStatus'>Status</div>
 
   <div class="field">
     <#%= f.label :user_id %>
@@ -25,4 +29,26 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
+
+  <div id="b"><p>draw a circle</p></div>
+  <button id="delete">Delete selected object(s)</button>
+    <!-- canvas -->
+    <canvas id="mainCanvas" width="1000" height="600"></canvas>
+
+    <!--generate flourishes from DB  -->
+    <div class="flourishes">
+
+      <%@flourishes.each do |f|%>
+        <%location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
+        <%= (cl_image_tag location, :id => f.name)%>
+      <%end%>
+    </div>
+
+  <div class="hidden">
+    <%= cl_image_upload_tag(:design_id, :resource_type => :image, :html => {:class => "hidden_file", :id => 'image_upload'}) %>
+  </div>
+
+
+
 <% end %>

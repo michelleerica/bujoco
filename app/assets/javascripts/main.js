@@ -40,6 +40,7 @@ if ($("body.designs.new").length ||
     canvas.add(new fabric.Line([ 0, i * grid, 1000, i * grid], { stroke: '#ccc', selectable: false }))
   }
 
+  //------------ add text ------------ //
 
   // adding text
   // var text = new fabric.Text('Text inside canvas', {
@@ -93,11 +94,9 @@ if ($("body.designs.new").length ||
         //  saveData(public_id);
     })
     //  ------ save cloudinary data to DB ------- //
-//
-//   var myform = document.getElementById("myform");
-//   var fd = new FormData(myform );
+
   var saveData = function(image){
-    var info = image
+    var info = image;
     console.log('line 100: ', info);
     $.ajax({
       url: "/designs",
@@ -105,14 +104,14 @@ if ($("body.designs.new").length ||
       dataType: 'json',
       method: 'POST'
     }).done(function(data){
-      debugger;
+      // debugger;
       console.log('DATA in ajax', data);
+      $('#saveStatus').text('CLOUDINARY SAVED worked')
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
     });
 
   }; //ajax request
-
 
   //------------ click event for flourishes ------------ //
   // when flourish clicked, flourish added to canvas
@@ -125,8 +124,7 @@ if ($("body.designs.new").length ||
         oImg.scale(.2);
         canvas.add(oImg);
       }, {crossOrigin: 'Anonymous'});
-
-  	});
+	});
 
     //------------ delete element from canvas ------------ //
 
@@ -162,6 +160,61 @@ if ($("body.designs.new").length ||
       top: Math.round(options.target.top / grid) * grid
     });
   });
+
+
+  //------------ identify whats on canvas ------------ //
+
+  $("#WHAT").click(function(){
+  	//  selectAllCanvasObjects();
+    // canvas.setActiveGroup(new fabric.Group(canvas.getObjects())).renderAll();
+    var elements = canvas.getObjects();
+    console.log(elements);
+
+    // var l
+
+    for (var i = 80; i < elements.length; i++) {
+      var left = elements[i].get('left');
+      var top = elements[i].get('top');
+      var height = elements[i].get('height');
+      var width = elements[i].get('width');
+      var angle = elements[i].get('angle');
+      var flourish = elements[i].get('_element').currentSrc;
+      // debugger;
+      var re = /\/[^\/]+$/
+      var found = flourish.match(re);
+      // var flourish = found[0]
+      found = found[0].replace(/.png/g, '');
+      found = found.substr(1)
+      // debugger;
+      console.log('left',left,'top',top,'flourish', found);
+    }
+
+	});
+
+// console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
+
+
+
+
+  // var selectAllCanvasObjects = function (){
+// 	  var objs = canvas.getObjects().map(function(o) {
+// 		return o.set('active', true);
+// 	   });
+//     //
+//   	var group = new fabric.Group(objs, {
+//   		originX: 'center',
+//   		originY: 'center'
+//   	});
+//     //
+//   	canvas._activeObject = null;
+//     //
+//   	canvas.setActiveGroup(group.setCoords()).renderAll();
+//     console.log('selected?');
+// }
+
+
+
+
 } //designs new
 
 if ($("body.designs.show").length) {
