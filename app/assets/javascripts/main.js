@@ -62,7 +62,7 @@ if ($("body.designs.new").length ||
 
   	});
 
-    //------------ save canvas  as png ------------ //
+    //------------ save canvas as jpeg ------------ //
 
   $("#save").click(function(){
   	$("#mainCanvas").get(0).toBlob(function(blob){
@@ -70,11 +70,11 @@ if ($("body.designs.new").length ||
   	});
   });
 
-console.log('running?');
-// ------ image upload to cloudinary -------//
+  // ------ image upload to cloudinary -------//
+
+  var public_id = ""
   $("#saveButton").click(function(){
     $("#mainCanvas").get(0).toBlob(function(blob){
-      debugger;
       $('#image_upload').unsigned_cloudinary_upload("test123",
         { cloud_name: 'michelleerica', tags: 'browser_uploads' },
              { multiple: false }
@@ -82,10 +82,37 @@ console.log('running?');
         .bind('cloudinarydone', function(e, data) {
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
+             public_id = data.result.public_id
+            //  debugger;
+            console.log('public_id', public_id);
+            saveData(public_id);
            })
            .fileupload('add', { files: [ blob ] });
          });
+        //  debugger;
+        //  saveData(public_id);
     })
+    //  ------ save cloudinary data to DB ------- //
+//
+//   var myform = document.getElementById("myform");
+//   var fd = new FormData(myform );
+  var saveData = function(image){
+    var info = image
+    console.log('line 100: ', info);
+    $.ajax({
+      url: "/designs",
+      data: {image: info},
+      dataType: 'json',
+      method: 'POST'
+    }).done(function(data){
+      debugger;
+      console.log('DATA in ajax', data);
+    }).fail(function(xhr, err, status) {
+          console.log(xhr, err, status);
+    });
+
+  }; //ajax request
+
 
   //------------ click event for flourishes ------------ //
   // when flourish clicked, flourish added to canvas
@@ -137,8 +164,9 @@ console.log('running?');
   });
 } //designs new
 
+if ($("body.designs.show").length) {
   //---------------------design show page---------------------//
-    console.log('working??');
+  console.log('working??');
 
     // debugger;
 
@@ -171,5 +199,6 @@ console.log('running?');
     }, {crossOrigin: 'Anonymous'})
 
   } //for loop
+} //design#show page
 
 }); // end of document ready

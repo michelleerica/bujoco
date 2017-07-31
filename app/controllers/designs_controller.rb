@@ -1,10 +1,12 @@
 class DesignsController < ApplicationController
+  protect_from_forgery
+
   # before_action :set_design, only: [:show, :edit, :update, :destroy]
 
   # from FRAGA
 
   before_action :check_if_admin, only: [:edit, :destroy]
-  # before_action :check_if_logged_in, except: [ :show]
+  before_action :check_if_logged_in, except: [ :show]
 
 
   # GET /designs
@@ -33,26 +35,37 @@ class DesignsController < ApplicationController
 
   # POST /designs
   # POST /designs.json
+
   def create
-    @design = @current_user.designs.new#(design_params)
+    # raise 'hell'
 
+    design = @current_user.designs.create image: params[:image]
+     #(design_params)
+    #  raise 1
+    #  binding.pry
 
-     if params[:file].present?
-       # Then call Cloudinary's upload method, passing in the file in params
-       req = Cloudinary::Uploader.upload(params[:file])
-       # Using the public_id allows us to use Cloudinary's powerful image transformation methods.
-       @design.image = req["public_id"]
+    if design.id
+      render :json => design
     end
 
-    respond_to do |format|
-      if @design.save
-        format.html { redirect_to @design, notice: 'Design was successfully created.' }
-        format.json { render :show, status: :created, location: @design }
-      else
-        format.html { render :new }
-        format.json { render json: @design.errors, status: :unprocessable_entity }
-      end
-    end
+    #
+    # if params[:file].present?
+    #    # Then call Cloudinary's upload method, passing in the file in params
+    #    req = Cloudinary::Uploader.upload(params[:file])
+    #    # Using the public_id allows us to use Cloudinary's powerful image transformation methods.
+    #    @design.image = req["public_id"]
+    # end
+
+    #
+    # respond_to do |format|
+    #   if @design.save
+    #     format.html { redirect_to @design, notice: 'Design was successfully created.' }
+    #     format.json { render :show, status: :created, location: @design }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @design.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
   end
 
@@ -93,7 +106,7 @@ class DesignsController < ApplicationController
     # end
 
     def design_params
-      params.require(:design).permit( :user_id)
+      params.require(:design).permit( :user_id, :image)
     end
 
 end #DesignsController
