@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
   //------------ create canvas ------------ //
-
+if ($("body.designs.new").length ||
+    $("body.designs.show").length){
   var canvas = new fabric.Canvas('mainCanvas', { selection: false });
   var grid = 25;
 
@@ -64,10 +65,27 @@ $(document).ready(function(){
     //------------ save canvas  as png ------------ //
 
   $("#save").click(function(){
-  	$("#canvas").get(0).toBlob(function(blob){
+  	$("#mainCanvas").get(0).toBlob(function(blob){
   		saveAs(blob, "myIMG.jpeg");
   	});
   });
+
+console.log('running?');
+// ------ image upload to cloudinary -------//
+  $("#saveButton").click(function(){
+    $("#mainCanvas").get(0).toBlob(function(blob){
+      debugger;
+      $('#image_upload').unsigned_cloudinary_upload("test123",
+        { cloud_name: 'michelleerica', tags: 'browser_uploads' },
+             { multiple: false }
+      )
+        .bind('cloudinarydone', function(e, data) {
+             console.log('DONE!', data);
+             // ajax send to rails server: data.result.public_id
+           })
+           .fileupload('add', { files: [ blob ] });
+         });
+    })
 
   //------------ click event for flourishes ------------ //
   // when flourish clicked, flourish added to canvas
@@ -79,7 +97,7 @@ $(document).ready(function(){
       fabric.Image.fromURL(src, function(oImg){
         oImg.scale(.2);
         canvas.add(oImg);
-      });
+      }, {crossOrigin: 'Anonymous'});
 
   	});
 
@@ -117,6 +135,7 @@ $(document).ready(function(){
       top: Math.round(options.target.top / grid) * grid
     });
   });
+} //designs new
 
   //---------------------design show page---------------------//
     console.log('working??');
@@ -149,7 +168,7 @@ $(document).ready(function(){
 
       canvas.add(showImg);
 
-      })
+    }, {crossOrigin: 'Anonymous'})
 
   } //for loop
 

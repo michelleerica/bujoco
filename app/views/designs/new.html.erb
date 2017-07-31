@@ -18,3 +18,12 @@
       <%= (cl_image_tag location, :id => f.name)%>
     <%end%>
   </div>
+<!--
+<form action="" id="uploadForm">
+  <input type="file" id="image_upload">
+
+</form> -->
+
+<%= cl_image_upload_tag(:design_id, :resource_type => :image, :html => {:class => "hidden_file", :id => 'image_upload' }) %>
+
+<button type="button" name="TEST" id="saveButton">TEST</button>
