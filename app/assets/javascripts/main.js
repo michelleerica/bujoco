@@ -1,8 +1,12 @@
+
+var design_id = null;
+
 $(document).ready(function(){
 
   //------------ create canvas ------------ //
 if ($("body.designs.new").length ||
-    $("body.designs.show").length){
+    $("body.designs.edit").length ||
+    $("body.designs.show").length) {
   var canvas = new fabric.Canvas('mainCanvas', { selection: false });
   var grid = 25;
 
@@ -12,7 +16,7 @@ if ($("body.designs.new").length ||
     if (movingObject === null) {
       return
     };
-    console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
+    console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id, 'object: ', movingObject.get('_element'));
     // debugger;
   };
 
@@ -117,11 +121,14 @@ if ($("body.designs.new").length ||
   // when flourish clicked, flourish added to canvas
   $(".flourishes").click(function(){
     // debugger;
-      var imgElement = event.target.id;
-      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+imgElement+".png";
+      var flourish_id = event.target.id;
+      var public_id = event.target.getAttribute('public_id');
+      // debugger;
+      var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/" + public_id + ".png";
 
       fabric.Image.fromURL(src, function(oImg){
         oImg.scale(.2);
+        oImg.id = flourish_id;
         canvas.add(oImg);
       }, {crossOrigin: 'Anonymous'});
 	});
@@ -170,7 +177,9 @@ if ($("body.designs.new").length ||
     var elements = canvas.getObjects();
     console.log(elements);
 
-    // var l
+    var l
+
+    var elems = [];
 
     for (var i = 80; i < elements.length; i++) {
       var left = elements[i].get('left');
@@ -178,42 +187,68 @@ if ($("body.designs.new").length ||
       var height = elements[i].get('height');
       var width = elements[i].get('width');
       var angle = elements[i].get('angle');
-      var flourish = elements[i].get('_element').currentSrc;
+      var flourish_id = elements[i].get('id');
+
+      // var url = elements[i].get('_element').currentSrc;
       // debugger;
       var re = /\/[^\/]+$/
-      var found = flourish.match(re);
+      // var flourish = url.match(re);
       // var flourish = found[0]
-      found = found[0].replace(/.png/g, '');
-      found = found.substr(1)
+      // flourish = flourish[0].replace(/.png/g, '');
+      // flourish = flourish.substr(1)
       // debugger;
-      console.log('left',left,'top',top,'flourish', found);
+      console.log('left',left,'top',top);
+      var elementInfo = {
+        left: left,
+        top: top,
+        height: height,
+        width: width,
+        angle: angle,
+        flourish_id: flourish_id
+      };
+
+      elems.push(elementInfo);
     }
+    console.log(elems);
+    saveElementData(elems)
 
 	});
 
+  var saveElementData = function(info){
+    console.log('element info:', info);
+
+    var data = {
+      name: '',  // .val();
+      elements: info
+    };
+
+    if( design_id ){
+      data.design_id = design_id;
+    }
+
+    $.ajax({
+      url: "/designs",
+      data: data,
+      dataType: 'json',
+      method: 'POST'
+    }).done(function(data){
+      // debugger;
+      console.log('DATA in ajax', data);
+      $('#saveStatus').text('DB save worked')
+
+      // save design_id in a global variable,
+      // and send it with all future requests
+      // to prevent a new design being created each
+      // time we save the elements
+      design_id = data.id;
+
+    }).fail(function(xhr, err, status) {
+          console.log(xhr, err, status);
+    });
+
+  }
+
 // console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
-
-
-
-
-  // var selectAllCanvasObjects = function (){
-// 	  var objs = canvas.getObjects().map(function(o) {
-// 		return o.set('active', true);
-// 	   });
-//     //
-//   	var group = new fabric.Group(objs, {
-//   		originX: 'center',
-//   		originY: 'center'
-//   	});
-//     //
-//   	canvas._activeObject = null;
-//     //
-//   	canvas.setActiveGroup(group.setCoords()).renderAll();
-//     console.log('selected?');
-// }
-
-
-
 
 } //designs new
 

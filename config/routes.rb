@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   root to: 'designs#new'
 
 
@@ -12,5 +13,6 @@ Rails.application.routes.draw do
 
   resources :designs
   resources :users
+  resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -40,8 +40,8 @@
     <div class="flourishes">
 
       <%@flourishes.each do |f|%>
-        <%location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.name)%>
+        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
+        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
       <%end%>
     </div>
 

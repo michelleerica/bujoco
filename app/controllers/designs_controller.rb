@@ -38,34 +38,48 @@ class DesignsController < ApplicationController
 
   def create
     # raise 'hell'
+    # binding.pry
 
-    design = @current_user.designs.create image: params[:image]
-     #(design_params)
+    design_id = params[:design_id]
+
+    if design_id.nil?
+      design = @current_user.designs.create name: params[:name]
+
+      # this belongs in the publish action:
+      # d = Design.find params[:design_id]
+      # d.update image: params[:image]
+
+    else
+    #   design = Design.find params["id"]
+      design = Design.find design_id
+    end
+
+    params[:elements].values.each do |elem|
+      puts 'el', elem
+
+      # design.elements << elem
+    end
+
+
+     #(dgesign_params)
     #  raise 1
     #  binding.pry
 
-    if design.id
-      render :json => design
+    # if design.id
+    #   render :json => design
+    # end
+
+
+
+    respond_to do |format|
+      if design.id
+        format.html { redirect_to edit_design_path(design), notice: 'Design was successfully created.' }
+        format.json { render :json => design}
+      else
+        format.html { render :new }
+        format.json { render json: design.errors, status: :unprocessable_entity }
+      end
     end
-
-    #
-    # if params[:file].present?
-    #    # Then call Cloudinary's upload method, passing in the file in params
-    #    req = Cloudinary::Uploader.upload(params[:file])
-    #    # Using the public_id allows us to use Cloudinary's powerful image transformation methods.
-    #    @design.image = req["public_id"]
-    # end
-
-    #
-    # respond_to do |format|
-    #   if @design.save
-    #     format.html { redirect_to @design, notice: 'Design was successfully created.' }
-    #     format.json { render :show, status: :created, location: @design }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @design.errors, status: :unprocessable_entity }
-    #   end
-    # end
 
   end
 
