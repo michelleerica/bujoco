@@ -56,8 +56,8 @@ class DesignsController < ApplicationController
 
     params[:elements].values.each do |elem|
       puts 'el', elem
-
-      # design.elements << elem
+      elem_to_save = Element.create (elem)
+      design.elements << elem_to_save
     end
 
 
