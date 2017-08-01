@@ -270,49 +270,54 @@ if ($("body.designs.show").length) {
 
     //rebuild existing design with element as saved in DB
     //use elements details (e.g. img, width, height etc) hidden on design show page in flourish div and add to canvas
-  // var $imgElementShow =$('.flourish');
+  var $imgElementShow =$('.flourish');
   //
   //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
-  // for (var i = 0; i < $imgElementShow.length; i++) {
-  //   var name = "#name" + i;
+  for (var i = 0; i < $imgElementShow.length; i++) {
+    var name = "#flourishname" + i;
   //   ///may break if there is no space in name.... consider using if statement with a break to resolve
   //
-  //   var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
-  //
-  //   // debugger;
-  //
-  //   var left = "#left" + i;
-  //   var top = "#top" + i;
-  //   var width = "#width" + i;
-  //   var height = "#height" + i;
-  //   var angle = "#angle" + i;
-  //   // var scaleX = "#scaleX" + i;
-  //   var scaleX = "#scaleX" + i;
-  //   // var text = $(scaleX).innerText()
-  //   debugger;
-  //   console.log($(scaleX).innerText());
+    var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
-  var top = "<%@design.top%>"
-  console.log(top);
+    // debugger;
+    var left = "#left" + i;
+    var top = "#top" + i;
+    var width = "#width" + i;
+    var height = "#height" + i;
+    var angle = "#angle" + i;
+    var scaleY = "#scaleY" + i;
+    var scaleX = "#scaleX" + i;
+    // var text = $(scaleX).innerText()
+    debugger;
+    console.log('scaleX', ($(scaleX)[0].innerText));
+
+    // $(width0)[0].innerText
 
 
 
-    //
-    // fabric.Image.fromURL(src, function(showImg){
-    //   showImg.setLeft(parseInt($(left).text())),
-    //   showImg.setTop(parseInt($(top).text())),
-    //   showImg.setWidth(parseInt($(width).text())),
-    //   showImg.setHeight(parseInt($(height).text())),
-    //   showImg.setAngle(parseInt($(angle).text())),
-    //   showImg.setScaleX(.2),
-    //   showImg.setScaleY(.2)
-    //   // showImg.setscaleY(parseInt($(scaleY).text())),
-    //
-    //   canvas.add(showImg);
-    //
-    // }, {crossOrigin: 'Anonymous'})
+    fabric.Image.fromURL(src, function(showImg){
+      showImg.setLeft(parseFloat($(left)[0].innerText)),
+      showImg.setTop(parseFloat($(top)[0].innerText)),
+      // showImg.setHeight(parseFloat($(height)[0].innerText)),
+      showImg.setAngle(parseFloat($(angle)[0].innerText)),
+      // showImg.setWidth(parseFloat($(width)[0].innerText)),
+      showImg.setScaleX(parseFloat($(scaleX)[0].innerText)),
+      showImg.setScaleY(parseFloat($(scaleY)[0].innerText)),
 
-  // } //for loop
-} //design#show page
+
+      // showImg.setTop(parseInt($(top).text())),
+      // showImg.setWidth(parseInt($(width).text())),
+      // showImg.setHeight(parseInt($(height).text())),
+      // showImg.setAngle(parseInt($(angle).text())),
+      // showImg.setScaleX(.2),
+      // showImg.setScaleY(.2)
+      // showImg.setscaleY(parseInt($(scaleY).text())),
+
+      canvas.add(showImg);
+
+    }, {crossOrigin: 'Anonymous'})
+
+  } //for loop
+}; //design#show page
 
 }); // end of document ready
