@@ -75,7 +75,7 @@ class DesignsController < ApplicationController
 #
     # from create
     params[:elements].values.each_with_index do |elem,i|
-      puts 'el LEFT', elem.left, 'el OBJ', elem.i
+      puts elem
         # if @design = Design.find_or_create_by(id: @design_id, name: params[:name], user: @current_user)
 
       elem_to_save = Element.create (elem)

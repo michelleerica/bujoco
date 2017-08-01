@@ -183,7 +183,7 @@ if ($("body.designs.new").length ||
   });
 
 
-  //------------ identify whats on canvas ------------ //
+  //------------ identify whats on canvas and save ------------ //
 
   $("#saveDBButton").click(function(){
 
@@ -283,7 +283,7 @@ if ($("body.designs.show").length ||
     console.log('scaleX', ($(scaleX)[0].innerText));
 
     // $(width0)[0].innerText
-    debugger;
+    // debugger;
 
 
     fabric.Image.fromURL(src, function(showImg){
@@ -300,6 +300,77 @@ if ($("body.designs.show").length ||
     }, {crossOrigin: 'Anonymous'})
 
   } //for loop
+
+  //------------ identify whats on canvas and update DB ------------ //
+
+  $("#updateDBButton").click(function(){
+
+    var elements = canvas.getObjects();
+    console.log(elements);
+
+    var elems = [];
+
+    for (var i = 80; i < elements.length; i++) {
+      var left = elements[i].get('left');
+      var top = elements[i].get('top');
+
+      var angle = elements[i].get('angle');
+      var scaleX = elements[i].get('scaleX');
+      var scaleY = elements[i].get('scaleY');
+      var flourish_id = elements[i].get('id');
+      console.log('scaleX', scaleX, 'scaleY', scaleY);
+      var elementInfo = {
+        left: left,
+        top: top,
+        angle: angle,
+        scaleX: scaleX,
+        scaleY: scaleY,
+        flourish_id: flourish_id
+      };
+
+      elems.push(elementInfo);
+    }
+    console.log(elems);
+    saveElementData(elems)
+
+  });
+
+  var saveElementData = function(info){
+    console.log('element info:', info);
+    debugger;
+    var data = {
+      name: $('#designName').val(),
+      elements: info,
+      design_id:$('#designId')[0].innerHTML
+    };
+
+    //need to get design from params
+    var url = "/designs/"+data.design_id;
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType: 'json',
+      method: 'PUT'
+    }).done(function(data){
+      // debugger;
+      console.log('DATA in ajax', data);
+      $('#saveStatus').text('DB save worked')
+
+      // save design_id in a global variable,
+      // and send it with all future requests
+      // to prevent a new design being created each
+      // time we save the elements
+      // design_id = data.id;
+
+    }).fail(function(xhr, err, status) {
+          console.log(xhr, err, status);
+    });
+
+  }
+
+
+
 }; //design#show page
 
 }); // end of document ready
