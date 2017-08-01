@@ -199,8 +199,8 @@ if ($("body.designs.new").length ||
     for (var i = 80; i < elements.length; i++) {
       var left = elements[i].get('left');
       var top = elements[i].get('top');
-      var height = elements[i].get('height');
-      var width = elements[i].get('width');
+      // var height = elements[i].get('height');
+      // var width = elements[i].get('width');
       var angle = elements[i].get('angle');
       var scaleX = elements[i].get('scaleX');
       var scaleY = elements[i].get('scaleY');
@@ -209,8 +209,8 @@ if ($("body.designs.new").length ||
       var elementInfo = {
         left: left,
         top: top,
-        height: height,
-        width: width,
+        // height: height,
+        // width: width,
         angle: angle,
         scaleX: scaleX,
         scaleY: scaleY,
@@ -273,22 +273,17 @@ if ($("body.designs.show").length) {
   var $imgElementShow =$('.flourish');
   //
   //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
-  for (var i = 0; i < $imgElementShow.length; i++) {
-    var name = "#flourishname" + i;
-  //   ///may break if there is no space in name.... consider using if statement with a break to resolve
-  //
-    var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
+  for (let i = 0; i < $imgElementShow.length; i++) {
+    let name = "#flourishname" + i;
+    let src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
+    let left = "#left" + i;
+    let top = "#top" + i;
+
+    let angle = "#angle" + i;
+    let scaleY = "#scaleY" + i;
+    let scaleX = "#scaleX" + i;
     // debugger;
-    var left = "#left" + i;
-    var top = "#top" + i;
-    var width = "#width" + i;
-    var height = "#height" + i;
-    var angle = "#angle" + i;
-    var scaleY = "#scaleY" + i;
-    var scaleX = "#scaleX" + i;
-    // var text = $(scaleX).innerText()
-    debugger;
     console.log('scaleX', ($(scaleX)[0].innerText));
 
     // $(width0)[0].innerText
@@ -314,6 +309,7 @@ if ($("body.designs.show").length) {
       // showImg.setscaleY(parseInt($(scaleY).text())),
 
       canvas.add(showImg);
+      console.log('ON', i);
 
     }, {crossOrigin: 'Anonymous'})
 

@@ -28,13 +28,11 @@ ActiveRecord::Schema.define(version: 20170801014729) do
     t.integer  "flourish_id"
     t.float    "left"
     t.float    "top"
-    t.float    "width"
-    t.float    "height"
+    t.float    "scaleX"
+    t.float    "scaleY"
     t.float    "angle"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.float    "scaleX"
-    t.float    "scaleY"
   end
 
   create_table "flourishes", force: :cascade do |t|
