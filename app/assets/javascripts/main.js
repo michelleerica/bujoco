@@ -90,9 +90,9 @@ if ($("body.designs.new").length ||
         .bind('cloudinarydone', function(e, data) {
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
-             info = data;
+             public_id = data.result.public_id
             //  debugger;
-            saveData(info);
+            saveData(public_id);
            })
            .fileupload('add', { files: [ blob ] });
          });
@@ -101,13 +101,13 @@ if ($("body.designs.new").length ||
     })
     //  ------ save cloudinary data to DB ------- //
 
-  var saveData = function(info){
-    var data = info.result.public_id;
-    console.log('line 107: ', data);
+  var saveData = function(image){
+    var info = image;
+    console.log('line 100: ', info);
 
-    if( design_id ){
-      data.design_id = design_id;
-    }
+    // if( design_id ){
+    //   data.design_id = design_id;
+    // }
     $.ajax({
       url: "../designs/cloudinary",
       data: {image: info},
@@ -117,7 +117,7 @@ if ($("body.designs.new").length ||
       // debugger;
       console.log('DATA in ajax', data);
       $('#saveStatus').text('CLOUDINARY SAVE successful')
-      design_id = data.id;
+      // design_id = data.id;
 
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
