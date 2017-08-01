@@ -92,15 +92,13 @@ if ($("body.designs.new").length ||
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
              public_id = data.result.public_id
-            //  design_id = '#{@design_id}'
 
              debugger;
             saveClData(public_id);
            })
            .fileupload('add', { files: [ blob ] });
          });
-        //  debugger;
-        //  saveData(public_id);
+
     })
     //  ------ save cloudinary data to DB ------- //
 
@@ -114,9 +112,7 @@ if ($("body.designs.new").length ||
     }
     console.log('line 115: ', image, 'id: ', design_id);
 
-    // if( design_id ){
-    //   data.design_id = design_id;
-    // }
+
     $.ajax({
       url: "/designs/cloudinary",
       data: data,
@@ -199,18 +195,15 @@ if ($("body.designs.new").length ||
     for (var i = 80; i < elements.length; i++) {
       var left = elements[i].get('left');
       var top = elements[i].get('top');
-      // var height = elements[i].get('height');
-      // var width = elements[i].get('width');
+
       var angle = elements[i].get('angle');
       var scaleX = elements[i].get('scaleX');
       var scaleY = elements[i].get('scaleY');
       var flourish_id = elements[i].get('id');
-      console.log('scaleX',scaleX,'scaleY',scaleY);
+      console.log('scaleX', scaleX, 'scaleY', scaleY);
       var elementInfo = {
         left: left,
         top: top,
-        // height: height,
-        // width: width,
         angle: angle,
         scaleX: scaleX,
         scaleY: scaleY,
@@ -259,11 +252,12 @@ if ($("body.designs.new").length ||
 
   }
 
-// console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id);
 
 } //designs new
 
-if ($("body.designs.show").length) {
+if ($("body.designs.show").length ||
+    $("body.designs.edit"))
+    {
   //---------------------design show page---------------------//
   console.log('working??');
 
@@ -276,6 +270,7 @@ if ($("body.designs.show").length) {
   //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
   for (let i = 0; i < $imgElementShow.length; i++) {
     let name = "#flourishname" + i;
+    let id = "#flourishid" + i;
     let src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
     let left = "#left" + i;
@@ -288,26 +283,16 @@ if ($("body.designs.show").length) {
     console.log('scaleX', ($(scaleX)[0].innerText));
 
     // $(width0)[0].innerText
-
+    debugger;
 
 
     fabric.Image.fromURL(src, function(showImg){
       showImg.setLeft(parseFloat($(left)[0].innerText)),
       showImg.setTop(parseFloat($(top)[0].innerText)),
-      // showImg.setHeight(parseFloat($(height)[0].innerText)),
       showImg.setAngle(parseFloat($(angle)[0].innerText)),
-      // showImg.setWidth(parseFloat($(width)[0].innerText)),
       showImg.setScaleX(parseFloat($(scaleX)[0].innerText)),
       showImg.setScaleY(parseFloat($(scaleY)[0].innerText)),
-
-
-      // showImg.setTop(parseInt($(top).text())),
-      // showImg.setWidth(parseInt($(width).text())),
-      // showImg.setHeight(parseInt($(height).text())),
-      // showImg.setAngle(parseInt($(angle).text())),
-      // showImg.setScaleX(.2),
-      // showImg.setScaleY(.2)
-      // showImg.setscaleY(parseInt($(scaleY).text())),
+      // showImg.setId(($(id)[0].innerText)),
 
       canvas.add(showImg);
       console.log('ON', i);

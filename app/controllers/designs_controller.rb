@@ -7,7 +7,7 @@ class DesignsController < ApplicationController
   # from FRAGA
 
   # before_action :check_if_admin, only: [:edit, :destroy]
-  # before_action :check_if_logged_in, except: [ :show]
+  before_action :check_if_logged_in, except: [ :show]
 
 
   # GET /designs
@@ -32,6 +32,7 @@ class DesignsController < ApplicationController
 
   # GET /designs/1/edit
   def edit
+    @flourishes = Flourish.all
 
   end
 
@@ -39,19 +40,6 @@ class DesignsController < ApplicationController
   # POST /designs.json
 
   def create
-    # binding.pry
-
-    # if @design_id.nil?
-    #   design = @current_user.designs.create name: params[:name]
-    #
-    #   # this belongs in the publish action:
-    #   # d = Design.find params[:design_id]
-    #   # d.update image: params[:image]
-    #
-    # else
-    # #   design = Design.find params["id"]
-    #   design = Design.find @design_id
-    # end
 
     params[:elements].values.each do |elem|
       puts 'el', elem
@@ -59,9 +47,6 @@ class DesignsController < ApplicationController
       @design.elements << elem_to_save
     end
 
-    # if design.id
-    #   render :json => design
-    # end
 
     respond_to do |format|
       if @design.id
@@ -77,20 +62,7 @@ class DesignsController < ApplicationController
 
   #POST /designs/cloudinary
   def cloudinary
-    #
-    # if @design_id.nil?
-    #   design = @current_user.designs.create name: params[:name]
-    #
-    #   # this belongs in the publish action:
-    #   # d = Design.find params[:design_id]
-    #   # d.update image: params[:image]
-    #
-    # else
-    # #   design = Design.find params["id"]
-    #   design = Design.find @design_id
-    # end
 
-    # this belongs in the publish action:
     @design.update image: params[:image]
 
     if @design.image
@@ -102,8 +74,10 @@ class DesignsController < ApplicationController
   def update
 #
     # from create
-    params[:elements].values.each do |elem|
-      puts 'el', elem
+    params[:elements].values.each_with_index do |elem,i|
+      puts 'el LEFT', elem.left, 'el OBJ', elem.i
+        # if @design = Design.find_or_create_by(id: @design_id, name: params[:name], user: @current_user)
+
       elem_to_save = Element.create (elem)
       @design.elements << elem_to_save
     end
@@ -144,11 +118,6 @@ class DesignsController < ApplicationController
       else
         @design = Design.find design_id
       end
-
-      # @comment = Comment.find_by(id: params[:id])
-      # raise 'hell'
-
-      # @design = Design.find_or_create_by(id: design_id, name: params[:name], user: @current_user)
 
     end
 
