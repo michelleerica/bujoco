@@ -14,4 +14,10 @@
  *= require_self
  */
 
- .hidden { display: none; }
+ .hidden {
+   display: none;
+ }
+
+ body{
+   background-color: #2E294E;
+ }

@@ -10,7 +10,7 @@ $(document).ready(function(){
 if ($("body.designs.new").length ||
     $("body.designs.edit").length ||
     $("body.designs.show").length) {
-  canvas = new fabric.Canvas('mainCanvas', { selection: false });
+  canvas = new fabric.Canvas('mainCanvas', { selection: false, backgroundColor: "#FFF4F4" });
   var grid = 25;
 
   //------------ click events for moving images (used to get location info - can delete upon finalisation but CHECK FIRST) ------------ //
@@ -43,7 +43,7 @@ if ($("body.designs.new").length ||
  //------------ create grid ------------ //
 
   for (var i = 0; i < (1000 / grid); i++) {
-    canvas.add(new fabric.Line([ i * grid, 0, i * grid, 1000], { stroke: '#ccc', selectable: false }));
+    canvas.add(new fabric.Line([ i * grid, 0, i * grid, 1000], { stroke: '#ccc', selectable: false}));
     canvas.add(new fabric.Line([ 0, i * grid, 1000, i * grid], { stroke: '#ccc', selectable: false }))
   }
 
