@@ -125,6 +125,7 @@ if ($("body.designs.new").length ||
       design_id = data.id;
       console.log('design_id', design_id,'data.id', data.id);
 
+
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
     });
@@ -238,13 +239,15 @@ if ($("body.designs.new").length ||
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
-      $('#saveStatus').text('DB save worked')
+      $('#saveStatus').text('DB save worked');
+
 
       // save design_id in a global variable,
       // and send it with all future requests
       // to prevent a new design being created each
       // time we save the elements
       design_id = data.id;
+      $('#designId').text(design_id);
 
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
@@ -331,11 +334,11 @@ if ($("body.designs.show").length ||
       elems.push(elementInfo);
     }
     console.log(elems);
-    saveElementData(elems)
+    updateElementData(elems)
 
   });
 
-  var saveElementData = function(info){
+  var updateElementData = function(info){
     console.log('element info:', info);
     debugger;
     var data = {
@@ -345,7 +348,15 @@ if ($("body.designs.show").length ||
     };
 
     //need to get design from params
-    var url = "/designs/"+data.design_id;
+    var url = "";
+
+    if (data.design_id !== null) {
+      url = "/designs/"+data.design_id
+    } else {
+      url = design_id
+    };
+
+    debugger;
 
     $.ajax({
       url: url,
@@ -355,7 +366,7 @@ if ($("body.designs.show").length ||
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
-      $('#saveStatus').text('DB save worked')
+      $('#saveStatus').text('DB save worked');
 
       // save design_id in a global variable,
       // and send it with all future requests
