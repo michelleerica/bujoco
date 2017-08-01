@@ -85,7 +85,7 @@ class DesignsController < ApplicationController
 
     respond_to do |format|
       if @design.id
-        format.html { redirect_to edit_design_path(design), notice: 'Design was successfully created.' }
+        format.html { redirect_to edit_design_path(@design), notice: 'Design was successfully created.' }
         format.json { render :json => @design}
       else
         format.html { render :new }
