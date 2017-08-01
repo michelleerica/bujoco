@@ -1,7 +1,8 @@
 class DesignsController < ApplicationController
   protect_from_forgery
 
-  # before_action :set_design, only: [:show, :edit, :update, :destroy]
+  before_action :set_design, only: [:show, :edit, :update, :destroy]
+  before_action :design_exists, only: [:create, :cloudinary]
 
   # from FRAGA
 
@@ -18,7 +19,7 @@ class DesignsController < ApplicationController
   # GET /designs/1
   # GET /designs/1.json
   def show
-    @design = Design.find(params[:id])
+    # @design = Design.find(params[:id])
 
   end
 
@@ -37,12 +38,12 @@ class DesignsController < ApplicationController
   # POST /designs.json
 
   def create
-    # raise 'hell'
     # binding.pry
 
-    design_id = params[:design_id]
-
-    if design_id.nil?
+    # design_id = params[:design_id]
+    # puts '-------------------------------'
+    # puts design_id
+    if @design_id.nil?
       design = @current_user.designs.create name: params[:name]
 
       # this belongs in the publish action:
@@ -51,7 +52,7 @@ class DesignsController < ApplicationController
 
     else
     #   design = Design.find params["id"]
-      design = Design.find design_id
+      design = Design.find @design_id
     end
 
     params[:elements].values.each do |elem|
@@ -60,16 +61,9 @@ class DesignsController < ApplicationController
       design.elements << elem_to_save
     end
 
-
-     #(dgesign_params)
-    #  raise 1
-    #  binding.pry
-
     # if design.id
     #   render :json => design
     # end
-
-
 
     respond_to do |format|
       if design.id
@@ -83,6 +77,29 @@ class DesignsController < ApplicationController
 
   end
 
+  #POST /designs/cloudinary
+  def cloudinary
+    # design_id = params[:design_id]
+
+    if @design_id.nil?
+      design = @current_user.designs.create name: params[:name]
+
+      # this belongs in the publish action:
+      # d = Design.find params[:design_id]
+      # d.update image: params[:image]
+
+    else
+    #   design = Design.find params["id"]
+      design = Design.find @design_id
+    end
+
+    # this belongs in the publish action:
+    design.update image: params[:image]
+
+    if design.image
+      render :json => design
+    end
+  end
   # PATCH/PUT /designs/1
   # PATCH/PUT /designs/1.json
   def update
@@ -115,9 +132,13 @@ class DesignsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_design
-    #   @design = Design.find(params[:id])
-    # end
+    def set_design
+      @design = Design.find(params[:id])
+    end
+
+    def design_exists
+      @design_id = params[:design_id]
+    end
 
     def design_params
       params.require(:design).permit( :user_id, :image)

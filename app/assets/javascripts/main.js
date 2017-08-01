@@ -82,7 +82,7 @@ if ($("body.designs.new").length ||
     $("#mainCanvas").get(0).toBlob(function(blob){
       $('#image_upload').unsigned_cloudinary_upload("test123",
         { cloud_name: 'michelleerica', tags: 'browser_uploads' },
-             { multiple: false }
+             { multiple: true }
       )
         .bind('cloudinarydone', function(e, data) {
              console.log('DONE!', data);
@@ -103,7 +103,7 @@ if ($("body.designs.new").length ||
     var info = image;
     console.log('line 100: ', info);
     $.ajax({
-      url: "/designs",
+      url: "../designs/cloudinary",
       data: {image: info},
       dataType: 'json',
       method: 'POST'
