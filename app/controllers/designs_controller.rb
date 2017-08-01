@@ -6,8 +6,8 @@ class DesignsController < ApplicationController
 
   # from FRAGA
 
-  before_action :check_if_admin, only: [:edit, :destroy]
-  before_action :check_if_logged_in, except: [ :show]
+  # before_action :check_if_admin, only: [:edit, :destroy]
+  # before_action :check_if_logged_in, except: [ :show]
 
 
   # GET /designs
@@ -32,6 +32,7 @@ class DesignsController < ApplicationController
 
   # GET /designs/1/edit
   def edit
+
   end
 
   # POST /designs
@@ -99,18 +100,21 @@ class DesignsController < ApplicationController
   # PATCH/PUT /designs/1
   # PATCH/PUT /designs/1.json
   def update
-
-    if params[:file].present?
-      req = Cloudinary::Uploader.upload(params[:file])
-      @design.image = req["public_id"]
+#
+    # from create
+    params[:elements].values.each do |elem|
+      puts 'el', elem
+      elem_to_save = Element.create (elem)
+      @design.elements << elem_to_save
     end
 
+
     respond_to do |format|
-      if @design.update(design_params)
-        format.html { redirect_to @design, notice: 'Design was successfully updated.' }
-        format.json { render :show, status: :ok, location: @design }
+      if @design.id
+        format.html { redirect_to edit_design_path(design), notice: 'Design was successfully created.' }
+        format.json { render :json => @design}
       else
-        format.html { render :edit }
+        format.html { render :new }
         format.json { render json: @design.errors, status: :unprocessable_entity }
       end
     end
@@ -133,24 +137,18 @@ class DesignsController < ApplicationController
     end
 
     def design_create_or_find
-      # @design_id = params[:design_id]
-      #
-      # if @design_id.nil?
-      #   @design = @current_user.designs.create name: params[:name]
-      #
-      #
-      # else
-      #   @design = Design.find @design_id
-      # end
-      #
+      design_id = params[:design_id]
+
+      if design_id.nil?
+        @design = @current_user.designs.create name: params[:name]
+      else
+        @design = Design.find design_id
+      end
+
       # @comment = Comment.find_by(id: params[:id])
-# raise 'hell'
+      # raise 'hell'
 
-# the following line to be uncommented when we go live to allow for 1 vote per user
-# Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
-@design = Design.find_or_create_by(id: params[:design_id], name: params[:name], user: @current_user)
-
-
+      # @design = Design.find_or_create_by(id: design_id, name: params[:name], user: @current_user)
 
     end
 

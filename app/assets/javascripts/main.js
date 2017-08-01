@@ -92,10 +92,10 @@ if ($("body.designs.new").length ||
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
              public_id = data.result.public_id
-             design_id = data.result.design_id
+            //  design_id = '#{@design_id}'
 
-            //  debugger;
-            saveClData(public_id, design_id);
+             debugger;
+            saveClData(public_id);
            })
            .fileupload('add', { files: [ blob ] });
          });
@@ -104,13 +104,13 @@ if ($("body.designs.new").length ||
     })
     //  ------ save cloudinary data to DB ------- //
 
-  var saveClData = function(image, design_id){
+  var saveClData = function(image){
     var data = {
       image: image,
     };
-
+    // debugger;
     if (design_id){
-      data.id = design_id;
+      data.design_id = design_id;
     }
     console.log('line 115: ', image, 'id: ', design_id);
 
@@ -118,7 +118,7 @@ if ($("body.designs.new").length ||
     //   data.design_id = design_id;
     // }
     $.ajax({
-      url: "../designs/cloudinary",
+      url: "/designs/cloudinary",
       data: data,
       dataType: 'json',
       method: 'POST'
@@ -231,8 +231,9 @@ if ($("body.designs.new").length ||
       name: $('#designName').val(),
       elements: info
     };
-
+    // debugger;
     if( design_id ){
+      // debugger;
       data.design_id = design_id;
     }
 

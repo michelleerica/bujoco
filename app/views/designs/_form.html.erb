@@ -37,18 +37,19 @@
   <div id="b"><p>draw a circle</p></div>
   <button id="delete" class="btn btn-default" >Delete selected object(s)</button>
     <!-- canvas -->
-    <canvas id="mainCanvas" width="1000" height="600"></canvas>
+    <canvas id="mainCanvas" width="1000" height="600" class="center-block" designId="<%=@design_id%>"></canvas>
+
     <br>
     <br>
     <!--generate flourishes from DB  -->
-    <div class="row flourishes">
-      <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="row flourishes img-rounded img-responsive">
+      <div class="col-xs-12 col-sm-6 col-md-8 ">
       <%@flourishes.each do |f|%>
         <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
         <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
       <%end%>
 
-    </div>
+      </div>
     </div>
 
   <div class="hidden">
