@@ -133,19 +133,25 @@ class DesignsController < ApplicationController
     end
 
     def design_create_or_find
-      @design_id = params[:design_id]
+      # @design_id = params[:design_id]
+      #
+      # if @design_id.nil?
+      #   @design = @current_user.designs.create name: params[:name]
+      #
+      #
+      # else
+      #   @design = Design.find @design_id
+      # end
+      #
+      # @comment = Comment.find_by(id: params[:id])
+# raise 'hell'
 
-      if @design_id.nil?
-        @design = @current_user.designs.create name: params[:name]
+# the following line to be uncommented when we go live to allow for 1 vote per user
+# Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
+@design = Design.find_or_create_by(id: params[:design_id], name: params[:name], user: @current_user)
 
-        # this belongs in the publish action:
-        # d = Design.find params[:design_id]
-        # d.update image: params[:image]
 
-      else
-      #   design = Design.find params["id"]
-        @design = Design.find @design_id
-      end
+
     end
 
     def design_params

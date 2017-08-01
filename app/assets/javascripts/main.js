@@ -81,6 +81,7 @@ if ($("body.designs.new").length ||
   // ------ image upload to cloudinary -------//
 
   var info = "";
+
   $("#saveClButton").click(function(){
     $("#mainCanvas").get(0).toBlob(function(blob){
       $('#image_upload').unsigned_cloudinary_upload("test123",
@@ -91,8 +92,10 @@ if ($("body.designs.new").length ||
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
              public_id = data.result.public_id
+             design_id = data.result.design_id
+
             //  debugger;
-            saveData(public_id);
+            saveClData(public_id, design_id);
            })
            .fileupload('add', { files: [ blob ] });
          });
@@ -101,23 +104,30 @@ if ($("body.designs.new").length ||
     })
     //  ------ save cloudinary data to DB ------- //
 
-  var saveData = function(image){
-    var info = image;
-    console.log('line 100: ', info);
+  var saveClData = function(image, design_id){
+    var data = {
+      image: image,
+    };
+
+    if (design_id){
+      data.id = design_id;
+    }
+    console.log('line 115: ', image, 'id: ', design_id);
 
     // if( design_id ){
     //   data.design_id = design_id;
     // }
     $.ajax({
       url: "../designs/cloudinary",
-      data: {image: info},
+      data: data,
       dataType: 'json',
       method: 'POST'
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
       $('#saveStatus').text('CLOUDINARY SAVE successful')
-      // design_id = data.id;
+      design_id = data.id;
+      console.log('design_id', design_id,'data.id', data.id);
 
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
@@ -180,12 +190,9 @@ if ($("body.designs.new").length ||
   //------------ identify whats on canvas ------------ //
 
   $("#saveDBButton").click(function(){
-  	//  selectAllCanvasObjects();
-    // canvas.setActiveGroup(new fabric.Group(canvas.getObjects())).renderAll();
+
     var elements = canvas.getObjects();
     console.log(elements);
-
-    var l
 
     var elems = [];
 
