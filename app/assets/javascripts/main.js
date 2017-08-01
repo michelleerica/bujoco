@@ -1,13 +1,16 @@
 
 var design_id = null;
 
+
+var canvas;
+
 $(document).ready(function(){
 
   //------------ create canvas ------------ //
 if ($("body.designs.new").length ||
     $("body.designs.edit").length ||
     $("body.designs.show").length) {
-  var canvas = new fabric.Canvas('mainCanvas', { selection: false });
+  canvas = new fabric.Canvas('mainCanvas', { selection: false });
   var grid = 25;
 
   //------------ click events for moving images (used to get location info - can delete upon finalisation but CHECK FIRST) ------------ //
@@ -16,7 +19,7 @@ if ($("body.designs.new").length ||
     if (movingObject === null) {
       return
     };
-    console.log('move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'height: ',movingObject.get('scaleY'), 'width: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id, 'object: ', movingObject.get('_element'));
+    console.log(movingObject, 'move handler: left: ',  movingObject.get('left'), 'top: ', movingObject.get('top'), 'scaleY: ',movingObject.get('scaleY'), 'scaleX: ', movingObject.get('scaleX'), 'angle: ', movingObject.get('angle'), 'aCoords: ', movingObject.get('aCoords'), 'object: ', movingObject.get('_element').id, 'object: ', movingObject.get('_element'));
     // debugger;
   };
 
@@ -69,7 +72,7 @@ if ($("body.designs.new").length ||
 
     //------------ save canvas as jpeg ------------ //
 
-  $("#save").click(function(){
+  $("#saveDesktopButton").click(function(){
   	$("#mainCanvas").get(0).toBlob(function(blob){
   		saveAs(blob, "myIMG.jpeg");
   	});
@@ -77,20 +80,19 @@ if ($("body.designs.new").length ||
 
   // ------ image upload to cloudinary -------//
 
-  var public_id = ""
-  $("#saveButton").click(function(){
+  var info = "";
+  $("#saveClButton").click(function(){
     $("#mainCanvas").get(0).toBlob(function(blob){
       $('#image_upload').unsigned_cloudinary_upload("test123",
-        { cloud_name: 'michelleerica', tags: 'browser_uploads' },
+        { cloud_name: 'michelleerica', tags: 'browser_uploads', backup: true },
              { multiple: true }
       )
         .bind('cloudinarydone', function(e, data) {
              console.log('DONE!', data);
              // ajax send to rails server: data.result.public_id
-             public_id = data.result.public_id
+             info = data;
             //  debugger;
-            console.log('public_id', public_id);
-            saveData(public_id);
+            saveData(info);
            })
            .fileupload('add', { files: [ blob ] });
          });
@@ -99,9 +101,13 @@ if ($("body.designs.new").length ||
     })
     //  ------ save cloudinary data to DB ------- //
 
-  var saveData = function(image){
-    var info = image;
-    console.log('line 100: ', info);
+  var saveData = function(info){
+    var data = info.result.public_id;
+    console.log('line 107: ', data);
+
+    if( design_id ){
+      data.design_id = design_id;
+    }
     $.ajax({
       url: "../designs/cloudinary",
       data: {image: info},
@@ -110,7 +116,9 @@ if ($("body.designs.new").length ||
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
-      $('#saveStatus').text('CLOUDINARY SAVED worked')
+      $('#saveStatus').text('CLOUDINARY SAVE successful')
+      design_id = data.id;
+
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
     });
@@ -171,7 +179,7 @@ if ($("body.designs.new").length ||
 
   //------------ identify whats on canvas ------------ //
 
-  $("#WHAT").click(function(){
+  $("#saveDBButton").click(function(){
   	//  selectAllCanvasObjects();
     // canvas.setActiveGroup(new fabric.Group(canvas.getObjects())).renderAll();
     var elements = canvas.getObjects();
@@ -187,23 +195,18 @@ if ($("body.designs.new").length ||
       var height = elements[i].get('height');
       var width = elements[i].get('width');
       var angle = elements[i].get('angle');
+      var scaleX = elements[i].get('scaleX');
+      var scaleY = elements[i].get('scaleY');
       var flourish_id = elements[i].get('id');
-
-      // var url = elements[i].get('_element').currentSrc;
-      // debugger;
-      var re = /\/[^\/]+$/
-      // var flourish = url.match(re);
-      // var flourish = found[0]
-      // flourish = flourish[0].replace(/.png/g, '');
-      // flourish = flourish.substr(1)
-      // debugger;
-      console.log('left',left,'top',top);
+      console.log('scaleX',scaleX,'scaleY',scaleY);
       var elementInfo = {
         left: left,
         top: top,
         height: height,
         width: width,
         angle: angle,
+        scaleX: scaleX,
+        scaleY: scaleY,
         flourish_id: flourish_id
       };
 
@@ -218,7 +221,7 @@ if ($("body.designs.new").length ||
     console.log('element info:', info);
 
     var data = {
-      name: '',  // .val();
+      name: $('#designName').val(),
       elements: info
     };
 
@@ -260,33 +263,49 @@ if ($("body.designs.show").length) {
 
     //rebuild existing design with element as saved in DB
     //use elements details (e.g. img, width, height etc) hidden on design show page in flourish div and add to canvas
-  var $imgElementShow =$('.flourish');
+  // var $imgElementShow =$('.flourish');
+  //
+  //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
+  // for (var i = 0; i < $imgElementShow.length; i++) {
+  //   var name = "#name" + i;
+  //   ///may break if there is no space in name.... consider using if statement with a break to resolve
+  //
+  //   var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
+  //
+  //   // debugger;
+  //
+  //   var left = "#left" + i;
+  //   var top = "#top" + i;
+  //   var width = "#width" + i;
+  //   var height = "#height" + i;
+  //   var angle = "#angle" + i;
+  //   // var scaleX = "#scaleX" + i;
+  //   var scaleX = "#scaleX" + i;
+  //   // var text = $(scaleX).innerText()
+  //   debugger;
+  //   console.log($(scaleX).innerText());
 
-    //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
-  for (var i = 0; i < $imgElementShow.length; i++) {
-    var name = "#name" + i;
-    ///may break if there is no space in name.... consider using if statement with a break to resolve
+  var top = "<%@design.top%>"
+  console.log(top);
 
-    var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
-    var left = "#left" + i;
-    var top = "#top" + i;
-    var width = "#width" + i;
-    var height = "#height" + i;
-    var angle = "#angle" + i;
 
-    fabric.Image.fromURL(src, function(showImg){
-      showImg.setLeft(parseInt($(left).text())),
-      showImg.setTop(parseInt($(top).text())),
-      showImg.setWidth(parseInt($(width).text())),
-      showImg.setHeight(parseInt($(height).text())),
-      showImg.setAngle(parseInt($(angle).text())),
+    //
+    // fabric.Image.fromURL(src, function(showImg){
+    //   showImg.setLeft(parseInt($(left).text())),
+    //   showImg.setTop(parseInt($(top).text())),
+    //   showImg.setWidth(parseInt($(width).text())),
+    //   showImg.setHeight(parseInt($(height).text())),
+    //   showImg.setAngle(parseInt($(angle).text())),
+    //   showImg.setScaleX(.2),
+    //   showImg.setScaleY(.2)
+    //   // showImg.setscaleY(parseInt($(scaleY).text())),
+    //
+    //   canvas.add(showImg);
+    //
+    // }, {crossOrigin: 'Anonymous'})
 
-      canvas.add(showImg);
-
-    }, {crossOrigin: 'Anonymous'})
-
-  } //for loop
+  // } //for loop
 } //design#show page
 
 }); // end of document ready

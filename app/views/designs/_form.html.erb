@@ -12,22 +12,22 @@
   <% end %>
 
 
-  <button type="button" name="TEST" id="saveButton">Publish</button>
+  <button type="button" name="TEST" id="saveClButton">Publish</button>
 
-  <button type="button" name="TEST" id="save">Save canvas to desktop</button>
+  <button type="button" name="TEST" id="saveDesktopButton">Save canvas to desktop</button>
 
-  <button type="button" name="TEST" id="WHAT">TEST</button>
+  <button type="button" name="TEST" id="saveDBButton">Save edits</button>
 
 
   <div id='saveStatus'>Status</div>
 
-  <div class="field">
+  <div class="field hidden">
     <%= f.label :user_id %>
     <%= f.number_field :user_id %>
   </div>
-  <div class="design id">
-    DESIGN ID: <%= @design.id %>
-  </div>
+
+  Design Name:
+  <input type="Design name" placeholder="design name" id="designName">
 
   <div class="actions">
     <%= f.submit %>

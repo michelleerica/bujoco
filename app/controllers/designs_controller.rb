@@ -2,7 +2,7 @@ class DesignsController < ApplicationController
   protect_from_forgery
 
   before_action :set_design, only: [:show, :edit, :update, :destroy]
-  before_action :design_exists, only: [:create, :cloudinary]
+  before_action :design_create_or_find, only: [:create, :cloudinary]
 
   # from FRAGA
 
@@ -40,25 +40,22 @@ class DesignsController < ApplicationController
   def create
     # binding.pry
 
-    # design_id = params[:design_id]
-    # puts '-------------------------------'
-    # puts design_id
-    if @design_id.nil?
-      design = @current_user.designs.create name: params[:name]
-
-      # this belongs in the publish action:
-      # d = Design.find params[:design_id]
-      # d.update image: params[:image]
-
-    else
-    #   design = Design.find params["id"]
-      design = Design.find @design_id
-    end
+    # if @design_id.nil?
+    #   design = @current_user.designs.create name: params[:name]
+    #
+    #   # this belongs in the publish action:
+    #   # d = Design.find params[:design_id]
+    #   # d.update image: params[:image]
+    #
+    # else
+    # #   design = Design.find params["id"]
+    #   design = Design.find @design_id
+    # end
 
     params[:elements].values.each do |elem|
       puts 'el', elem
       elem_to_save = Element.create (elem)
-      design.elements << elem_to_save
+      @design.elements << elem_to_save
     end
 
     # if design.id
@@ -66,12 +63,12 @@ class DesignsController < ApplicationController
     # end
 
     respond_to do |format|
-      if design.id
+      if @design.id
         format.html { redirect_to edit_design_path(design), notice: 'Design was successfully created.' }
-        format.json { render :json => design}
+        format.json { render :json => @design}
       else
         format.html { render :new }
-        format.json { render json: design.errors, status: :unprocessable_entity }
+        format.json { render json: @design.errors, status: :unprocessable_entity }
       end
     end
 
@@ -79,25 +76,24 @@ class DesignsController < ApplicationController
 
   #POST /designs/cloudinary
   def cloudinary
-    # design_id = params[:design_id]
-
-    if @design_id.nil?
-      design = @current_user.designs.create name: params[:name]
-
-      # this belongs in the publish action:
-      # d = Design.find params[:design_id]
-      # d.update image: params[:image]
-
-    else
-    #   design = Design.find params["id"]
-      design = Design.find @design_id
-    end
+    #
+    # if @design_id.nil?
+    #   design = @current_user.designs.create name: params[:name]
+    #
+    #   # this belongs in the publish action:
+    #   # d = Design.find params[:design_id]
+    #   # d.update image: params[:image]
+    #
+    # else
+    # #   design = Design.find params["id"]
+    #   design = Design.find @design_id
+    # end
 
     # this belongs in the publish action:
-    design.update image: params[:image]
+    @design.update image: params[:image]
 
-    if design.image
-      render :json => design
+    if @design.image
+      render :json => @design
     end
   end
   # PATCH/PUT /designs/1
@@ -136,8 +132,20 @@ class DesignsController < ApplicationController
       @design = Design.find(params[:id])
     end
 
-    def design_exists
+    def design_create_or_find
       @design_id = params[:design_id]
+
+      if @design_id.nil?
+        @design = @current_user.designs.create name: params[:name]
+
+        # this belongs in the publish action:
+        # d = Design.find params[:design_id]
+        # d.update image: params[:image]
+
+      else
+      #   design = Design.find params["id"]
+        @design = Design.find @design_id
+      end
     end
 
     def design_params

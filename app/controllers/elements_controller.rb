@@ -4,7 +4,7 @@ class ElementsController < ApplicationController
   def new
     @design = Design.find(params[:id])
 
-    element = @design.elements.create left: params[:image], top: params[:top], width: params[:width], height: params[:height], angle: params[:angle] 
+    element = @design.elements.create left: params[:image], top: params[:top], width: params[:width], height: params[:height], angle: params[:angle], scaleX: params[:scaleX], scaleY: params[:scaleY]   
      #(design_params)
     #  raise 1
     #  binding.pry

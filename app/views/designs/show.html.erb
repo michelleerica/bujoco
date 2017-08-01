@@ -8,7 +8,7 @@
 </p>
 
 
-<div class='hidden'>
+<!-- <div class='hidden'> -->
   <%@design.elements.each_with_index do |e, i|%>
     <div class="flourish">
 
@@ -19,10 +19,12 @@
       <div id="width<%=i%>"><%= e.width%></div>
       <div id="height<%=i%>"><%= e.height%></div>
       <div id="angle<%=i%>"><%= e.angle%></div>
+      <div id="scaleX<%=i%>"><%= e.scaleX%></div>
+      <div id="scaleY<%=i%>"><%= e.scaleY%></div>
 
     </div>
   <%end%>
-</div>
+<!-- </div> -->
 
 <%= link_to 'Edit', edit_design_path(@design) %> |
 <%= link_to 'Back', designs_path %>
