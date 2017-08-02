@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @published_designs = []
     @unpublished_designs = []
 
-    @current_user.designs.each do |d|
+    @user.designs.each do |d|
       if d.image.present?
         # raise '?hell'
         @published_designs << d
