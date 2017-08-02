@@ -107,9 +107,12 @@ if ($("body.designs.new").length ||
     };
     debugger;
 
-    if (designData.id !== null){
-      data.design_id = designData.id;
+    if (design_id){
+      data.design_id = design_id;
+    } else if (designData.id !== null){
+      data.design_id = designData.id
     }
+
     console.log('line 115: ', image, 'id: ', design_id);
 
 
@@ -227,9 +230,12 @@ if ($("body.designs.new").length ||
       elements: info
     };
     // debugger;
-    if( design_id ){
-      // debugger;
-      data.design_id = design_id;
+    // if( design_id ){
+    //   // debugger;
+    //   data.design_id = design_id;
+    // }
+    if (designData.id !== null){
+      data.design_id = designData.id;
     }
 
     $.ajax({

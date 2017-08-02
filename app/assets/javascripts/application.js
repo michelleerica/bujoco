@@ -19,6 +19,8 @@
 
 //= require fabric
 //= require fileSaver
+//= require main
+//= require showDesign
 
 
 //= require_tree .
