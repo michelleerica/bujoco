@@ -32,15 +32,17 @@
   <% @unpublished_designs.each do |d| %>
     <div class="col-md-3">
       <li class="list-group-item">
-      <%= link_to ("NAME #{d.name ||d.id}"), edit_design_path(d.id) %>
+      <%= link_to ("NAME #{d.id}"), edit_design_path(d) %>
       <td><%= link_to 'Edit', edit_design_path(d) %></td>
-      <td><%= link_to 'Destroy', d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </li>
   </div>
   <%end%>
 
     </div>
   </ul>
+
+
 
 
 

@@ -8,7 +8,7 @@ class DesignsController < ApplicationController
   # from FRAGA
 
   # before_action :check_if_admin, only: [:edit, :destroy]
-  before_action :check_if_logged_in, except: [ :show]
+  before_action :check_if_logged_in, except: [:index, :show]
 
   def flourish_generator
     @flourish_category = Flourish.group(:category).count
@@ -116,6 +116,8 @@ class DesignsController < ApplicationController
   # DELETE /designs/1
   # DELETE /designs/1.json
   def destroy
+    @design = Design.find(params[:id])
+
     @design.destroy
     respond_to do |format|
       format.html { redirect_to designs_url, notice: 'Design was successfully destroyed.' }

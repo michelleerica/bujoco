@@ -15,6 +15,7 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require jquery.cloudinary
+//= require jquery_ujs
 
 //= require fabric
 //= require fileSaver
