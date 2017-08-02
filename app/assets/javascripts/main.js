@@ -158,6 +158,7 @@ if ($("body.designs.new").length ||
   var deleteObjects = function(){
   	var activeObject = canvas.getActiveObject(),
       activeGroup = canvas.getActiveGroup();
+      console.log('TO DELETE');
       if (activeObject) {
         if (confirm('Are you sure?')) {
           canvas.remove(activeObject);
@@ -268,7 +269,7 @@ if ($("body.designs.show").length ||
 
     //rebuild existing design with element as saved in DB
     //use elements details (e.g. img, width, height etc) hidden on design show page in flourish div and add to canvas
-  var $imgElementShow =$('.flourish');
+  // var $imgElementShow =$('.flourish');
   //
   //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
 
@@ -296,40 +297,6 @@ if ($("body.designs.show").length ||
     }, {crossOrigin: 'Anonymous'})
 
   }
-
-/*************
-  for (let i = 0; i < $imgElementShow.length; i++) {
-    let name = "#flourishname" + i;
-    let id = "#flourishid" + i;
-    let src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
-    let left = "#left" + i;
-    let top = "#top" + i;
-    let angle = "#angle" + i;
-    let scaleY = "#scaleY" + i;
-    let scaleX = "#scaleX" + i;
-    // debugger;
-    console.log('scaleX', ($(scaleX)[0].innerText));
-    // debugger;
-    var flourish = fabric.Image.fromURL(src, function(showImg){
-      // debugger;
-      showImg.setLeft(parseFloat($(left)[0].innerText));
-      showImg.setTop(parseFloat($(top)[0].innerText));
-      showImg.setAngle(parseFloat($(angle)[0].innerText));
-      showImg.setScaleX(parseFloat($(scaleX)[0].innerText));
-      showImg.setScaleY(parseFloat($(scaleY)[0].innerText));
-
-      // showImg.id = flourish_id;
-
-      // showImg.setId(($(id)[0].innerText)),
-      // showImg.my.id=($(id)[0].innerText),
-      // debugger;
-      canvas.add(showImg);
-      console.log('ON', i);
-
-    }, {crossOrigin: 'Anonymous'})
-
-  } //for loop
-***************/
 
 
   //------------ identify whats on canvas and update DB ------------ //

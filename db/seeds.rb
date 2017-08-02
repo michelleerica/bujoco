@@ -103,8 +103,8 @@ f43 = Flourish.create category:"quote", location_storage:"quote-poodles", name:"
 
 
 # Elements
-e1 = Element.create left:75, top:0, width:10, height:10, angle:47
-e2 = Element.create left:100, top:100, width:300, height:400, angle:0
+e1 = Element.create left:75, top:0, scaleX:0.2, scaleY:0.5, angle:47
+e2 = Element.create left:100, top:100, scaleX:0.2, scaleY:0.5, angle:0
 
 
 

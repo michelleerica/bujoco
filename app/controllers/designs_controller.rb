@@ -2,6 +2,7 @@ class DesignsController < ApplicationController
   protect_from_forgery
 
   before_action :set_design, only: [:show, :edit, :update, :destroy]
+  before_action :flourish_generator, only: [:show, :edit, :update, :new]
   before_action :design_create_or_find, only: [:create, :cloudinary]
 
   # from FRAGA
@@ -9,6 +10,10 @@ class DesignsController < ApplicationController
   # before_action :check_if_admin, only: [:edit, :destroy]
   before_action :check_if_logged_in, except: [ :show]
 
+  def flourish_generator
+    @flourish_category = Flourish.group(:category).count
+
+  end
 
   # GET /designs
   # GET /designs.json
@@ -19,7 +24,7 @@ class DesignsController < ApplicationController
   # GET /designs/1
   # GET /designs/1.json
   def show
-    # @design = Design.find(params[:id])
+    @design = Design.find(params[:id])
 
   end
 

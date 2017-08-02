@@ -7,20 +7,6 @@
   <%= link_to 'Back', designs_path %>
 </div>
 
-<!-- <div class='hidden'> -->
-  <%@design.elements.each_with_index do |e, i|%>
-    <div class="flourish">
-      <!-- <#%=raise "hell"%> -->
-      <div id="flourishname<%=i%>"><%= e.flourish.name%></div>
-      <div id="flourishid<%=i%>"><%= e.flourish.id%></div>
-      <div id="left<%=i%>"><%= e.left%></div>
-      <div id="top<%=i%>"><%= e.top%></div>
-      <div id="angle<%=i%>"><%= e.angle%></div>
-      <div id="scaleX<%=i%>"><%= e.scaleX%></div>
-      <div id="scaleY<%=i%>"><%= e.scaleY%></div>
-
-    </div>
-  <%end%>
 
  <script>
   var elements = <%= raw @design.elements.to_json(include: :flourish) %>;

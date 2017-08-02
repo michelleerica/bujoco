@@ -1,6 +1,13 @@
 
 
 <div>
+  Design Name:
+  <input type="Design name" placeholder="design name" id="designName">
+
+
+  <div id="b"><p>draw a circle</p></div>
+
+
   <button type="button" id="saveClButton" class="btn btn-default" >Publish</button>
 
   <button type="button" id="saveDesktopButton" class="btn btn-default" >Save canvas to desktop</button>
@@ -9,27 +16,34 @@
 
   <button type="button" id="updateDBButton" class="btn btn-default" >Update edits</button>
 
-  <!-- <div id="designId">design id</div> -->
+  <button id="delete" class="btn btn-default" >Delete selected object</button>
+
+
+
   <div id="designId"><%=@design.id%></div>
+  <div id="designName"><%=@design.name%></div>
 
   <div id='saveStatus'>Status</div>
 </div>
 
 <div class="row">
-  <div class="col-xs-6 col-md-3">
+  <div class="col-xs-6 col-md-2">
 
     <!--generate flourishes from DB  -->
 
 <!-- Flourish.where("category":"month") -->
 
 
-  <#% @flourishes.order('category').each do |category| %>
+  <!-- <#% @flourishes.order('category').each do |category| %>
     <#%category %>
 
-  <#%<end>%>
+  <#%<end>%> -->
 
 
     <div class="flourishes img-rounded">
+
+
+      FLOURISH: <%=@flourish%> <%=@val%>
       <%@flourishes.where("category":"borders").each do |f|%>
         <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
         <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
@@ -55,7 +69,7 @@
     </div>
 
   </div>
-
+<!--  -->
   <div class="col-xs-12 col-sm-6 col-md-9">
       <canvas id="mainCanvas" width="1000" height="600" class="center-block" designId="<%=@design_id%>"></canvas>
 
@@ -75,23 +89,6 @@
       </ul>
     </div>
   <% end %>
-
-
-  <div class="field hidden">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
-
-  Design Name:
-  <input type="Design name" placeholder="design name" id="designName">
-
-  <div class="actions hidden">
-    <%= f.submit %>
-  </div>
-
-
-    <div id="b"><p>draw a circle</p></div>
-    <button id="delete" class="btn btn-default" >Delete selected object(s)</button>
 
 
   <div class="hidden">

@@ -5,19 +5,23 @@
   <%= @user.name %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
 <p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+  Published designs:
+  <% @published_designs.each do |d| %>
+      <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{d.image}.png" %>
+      <%= link_to (cl_image_tag url), design_path(d.id),:class => 'img-thumbnail'  %>
+      <%end%>
 
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
+  Designs in progress:
+  <% @unpublished_designs.each do |d| %>
+
+      <%= link_to d.id, edit_design_path(d.id),:class => 'img-thumbnail'  %>
+      <%end%>
+
+
+
+
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
