@@ -6,6 +6,10 @@
   <%= cl_image_tag url %>
 
 </div>
+<#% if @current_user.present? == false%>
+  <%=link_to 'Save to my designs', edit_design_path(@design) %>
+  <#%end%>
+
 
   <%= link_to 'Edit', edit_design_path(@design) %> | -->
   <%= link_to 'Back', designs_path %>

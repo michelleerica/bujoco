@@ -28,9 +28,11 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand active" href="/">Bujo collective</a>
+      <a class="nav navbar-nav navbar-left">
+
+        <%=link_to 'What is bujoco?', bujoco_path	 %></a>
     </div>
 
-</ul>
 <ul class='nav navbar-nav navbar-right'>
       <% unless @current_user.present?%>
         <li><%=link_to 'Login', login_path %>  </li>
@@ -38,7 +40,7 @@
       <%else%>
       <ul class="nav navbar-nav">
         <li><%= link_to 'Create', new_design_path%></li>
-        <li><%= link_to 'Designs', user_path(@current_user)%></li>
+        <!-- <li><%#= link_to 'Designs', user_path(@current_user)%></li> -->
 
         <li><%= link_to 'Logout', login_path, method: :delete%></li>
         <%#raise 'hell'%>

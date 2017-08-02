@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   root to: 'designs#index'
+  get '/bujoco' => 'application#bujoco' ## what is bujoco
 
 
   # from notes:
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   resources :elements
 
   post '/designs/cloudinary' => 'designs#cloudinary' ## save cloudinary
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

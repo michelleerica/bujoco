@@ -10,6 +10,7 @@ class DesignsController < ApplicationController
   # before_action :check_if_admin, only: [:edit, :destroy]
   before_action :check_if_logged_in, except: [:index, :show]
 
+
   def flourish_generator
     @flourish_category = Flourish.group(:category).count
 
@@ -91,7 +92,8 @@ class DesignsController < ApplicationController
   # PATCH/PUT /designs/1.json
   def update
 #
-    # from create
+    @design.elements.destroy_all
+
     params[:elements].values.each_with_index do |elem,i|
       puts elem
         # if @design = Design.find_or_create_by(id: @design_id, name: params[:name], user: @current_user)

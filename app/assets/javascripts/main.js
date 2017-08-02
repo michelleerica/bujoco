@@ -114,7 +114,6 @@ if ($("body.designs.new").length ||
 
     console.log('line 115: ', image, 'id: ', design_id);
 
-
     $.ajax({
       url: "/designs/cloudinary",
       data: data,
@@ -126,7 +125,12 @@ if ($("body.designs.new").length ||
       $('#saveStatus').text('CLOUDINARY SAVE successful')
       // design_id = data.id;
       console.log('design_id', design_id,'data.id', data.id);
-
+      canvas.deactivateAll();
+      canvas.selection = false;
+      canvas.forEachObject(function(o) {
+          o.selectable = false;
+      });
+      $('#flourishes').click(false);
 
     }).fail(function(xhr, err, status) {
           console.log(xhr, err, status);
@@ -199,7 +203,6 @@ if ($("body.designs.new").length ||
     for (var i = 80; i < elements.length; i++) {
       var left = elements[i].get('left');
       var top = elements[i].get('top');
-
       var angle = elements[i].get('angle');
       var scaleX = elements[i].get('scaleX');
       var scaleY = elements[i].get('scaleY');
