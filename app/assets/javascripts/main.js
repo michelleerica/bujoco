@@ -271,38 +271,66 @@ if ($("body.designs.show").length ||
   var $imgElementShow =$('.flourish');
   //
   //   //flourish div created on show page as part of a loop. Number of flourish divs indicate how many elements there are to display
-  for (let i = 0; i < $imgElementShow.length; i++) {
-    let name = "#flourishname" + i;
-    let id = "#flourishid" + i;
-    let src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
 
-    let left = "#left" + i;
-    let top = "#top" + i;
+  console.log(elements);
+  console.log('length', elements.length);
 
-    let angle = "#angle" + i;
-    let scaleY = "#scaleY" + i;
-    let scaleX = "#scaleX" + i;
-    // debugger;
-    console.log('scaleX', ($(scaleX)[0].innerText));
+  for (var i = 0; i < elements.length; i++) {
+    let e = elements[i];
+    console.log('element: ', e);
 
-    // $(width0)[0].innerText
-    // debugger;
+    var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+ e.flourish.name +".png";
 
-
-    fabric.Image.fromURL(src, function(showImg){
-      showImg.setLeft(parseFloat($(left)[0].innerText)),
-      showImg.setTop(parseFloat($(top)[0].innerText)),
-      showImg.setAngle(parseFloat($(angle)[0].innerText)),
-      showImg.setScaleX(parseFloat($(scaleX)[0].innerText)),
-      showImg.setScaleY(parseFloat($(scaleY)[0].innerText)),
-      // showImg.setId(($(id)[0].innerText)),
+    var flourish = fabric.Image.fromURL(src, function(showImg){
+      // debugger;
+      showImg.setLeft(e.left); console.log('e.left', e.left);
+      showImg.setTop(e.top);
+      showImg.setAngle(e.angle);
+      showImg.setScaleX(e.scaleX);
+      showImg.setScaleY(e.scaleY);
+      showImg.id = e.flourish.id;
 
       canvas.add(showImg);
       console.log('ON', i);
 
     }, {crossOrigin: 'Anonymous'})
 
+  }
+
+/*************
+  for (let i = 0; i < $imgElementShow.length; i++) {
+    let name = "#flourishname" + i;
+    let id = "#flourishid" + i;
+    let src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+$(name).text()+".png";
+    let left = "#left" + i;
+    let top = "#top" + i;
+    let angle = "#angle" + i;
+    let scaleY = "#scaleY" + i;
+    let scaleX = "#scaleX" + i;
+    // debugger;
+    console.log('scaleX', ($(scaleX)[0].innerText));
+    // debugger;
+    var flourish = fabric.Image.fromURL(src, function(showImg){
+      // debugger;
+      showImg.setLeft(parseFloat($(left)[0].innerText));
+      showImg.setTop(parseFloat($(top)[0].innerText));
+      showImg.setAngle(parseFloat($(angle)[0].innerText));
+      showImg.setScaleX(parseFloat($(scaleX)[0].innerText));
+      showImg.setScaleY(parseFloat($(scaleY)[0].innerText));
+
+      // showImg.id = flourish_id;
+
+      // showImg.setId(($(id)[0].innerText)),
+      // showImg.my.id=($(id)[0].innerText),
+      // debugger;
+      canvas.add(showImg);
+      console.log('ON', i);
+
+    }, {crossOrigin: 'Anonymous'})
+
   } //for loop
+***************/
+
 
   //------------ identify whats on canvas and update DB ------------ //
 
@@ -340,7 +368,7 @@ if ($("body.designs.show").length ||
 
   var updateElementData = function(info){
     console.log('element info:', info);
-    debugger;
+    // debugger;
     var data = {
       name: $('#designName').val(),
       elements: info,
@@ -356,7 +384,7 @@ if ($("body.designs.show").length ||
       url = design_id
     };
 
-    debugger;
+    // debugger;
 
     $.ajax({
       url: url,

@@ -21,4 +21,8 @@
 
     </div>
   <%end%>
+
+ <script>
+  var elements = <%= raw @design.elements.to_json(include: :flourish) %>;
+ </script>
 <!-- </div> -->

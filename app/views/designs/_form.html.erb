@@ -22,6 +22,13 @@
 
 <!-- Flourish.where("category":"month") -->
 
+
+  <#% @flourishes.order('category').each do |category| %>
+    <#%category %>
+
+  <#%<end>%>
+
+
     <div class="flourishes img-rounded">
       <%@flourishes.where("category":"borders").each do |f|%>
         <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
