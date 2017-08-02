@@ -1,29 +1,30 @@
 
-
 <div>
-  Design Name:
-  <input type="Design name" placeholder="design name" id="designName">
 
+  <div class="row">
+    <div class="col-xs-6 col-md-2"><h3>New Design</h3>
+    </div>
+    <div class="col-xs-12 col-md-10">
 
-  <div id="b"><p>draw a circle</p></div>
+      Design Name:
+      <input type="Design name" placeholder="design name" id="designName">
 
+      <button type="button" id="saveClButton" class="btn btn-default" >Publish</button>
 
-  <button type="button" id="saveClButton" class="btn btn-default" >Publish</button>
+      <button type="button" id="saveDesktopButton" class="btn btn-default" >Save canvas to desktop</button>
 
-  <button type="button" id="saveDesktopButton" class="btn btn-default" >Save canvas to desktop</button>
+      <button type="button" id="saveDBButton" class="btn btn-default" >Save edits</button>
 
-  <button type="button" id="saveDBButton" class="btn btn-default" >Save edits</button>
+      <button type="button" id="updateDBButton" class="btn btn-default" >Update edits</button>
 
-  <button type="button" id="updateDBButton" class="btn btn-default" >Update edits</button>
+      <button id="delete" class="btn btn-default" >Delete selected object</button>
 
-  <button id="delete" class="btn btn-default" >Delete selected object</button>
+      <div id="designName"><%=@design.name%></div>
 
+      <div id='saveStatus'>Status</div>
+    </div>
 
-
-  <div id="designId"><%=@design.id%></div>
-  <div id="designName"><%=@design.name%></div>
-
-  <div id='saveStatus'>Status</div>
+  </div>
 </div>
 
 <div class="row">

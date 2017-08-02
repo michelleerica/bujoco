@@ -24,6 +24,20 @@
 
   </head>
 
+  <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand active" href="/">Bujo collective</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Create', new_design_path%></li>
+      <li><%= link_to 'Designs', user_path(@current_user)%></li>
+
+    </ul>
+  </div>
+</nav>
+
+
   <body class="<%=controller_name%> <%=action_name%>">
 
     <%= yield %>

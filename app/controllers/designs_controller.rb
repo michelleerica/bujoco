@@ -19,6 +19,20 @@ class DesignsController < ApplicationController
   # GET /designs.json
   def index
     @designs = Design.all
+
+
+        @published_designs = []
+        @unpublished_designs = []
+
+        @designs.each do |d|
+          if d.image.present?
+            # raise '?hell'
+            @published_designs << d
+
+          else
+            @unpublished_designs << d
+          end
+        end
   end
 
   # GET /designs/1

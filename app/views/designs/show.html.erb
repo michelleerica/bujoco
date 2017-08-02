@@ -1,17 +1,11 @@
 <div class="container">
 
+  <h1>Design name:<%=@design.name%></h1>
+  <div class="img-rounded">
   <% url = "http://res.cloudinary.com/michelleerica/image/upload/#{@design.image}.png" %>
-  <%= link_to (cl_image_tag url), design_path(@design.id) %>
+  <%= cl_image_tag url %>
 
-  <!-- <h2>Show design</h2>
-  <canvas id="mainCanvas" width="1000" height="600"></canvas>
-
-  <p>
-    <strong>User:</strong>
-    <%= @design.user_id %>
-  </p>
-
-
+</div>
 
   <%= link_to 'Edit', edit_design_path(@design) %> | -->
   <%= link_to 'Back', designs_path %>

@@ -7,22 +7,40 @@
   <%= @user.name %>
 </p>
 
+<h1>Published designs:</h1>
+<div class="row">
 
-<div>
-  Published designs:
-  <% @published_designs.each do |d| %>
-      <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{d.image}.png" %>
-      <%= link_to (cl_image_tag url), design_path(d.id),:class => 'img-thumbnail'  %>
-      <%end%>
+<% @published_designs.each do |d| %>
+    <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_120/#{d.image}.png" %>
+<div class="col-md-3">
+  <div class="card" style="width: 20rem;">
+
+    <%= link_to (cl_image_tag url), design_path(d.id),:class => 'card-img-top img-thumbnail'%>
+    <!-- <img class="" src="..." alt="Card image cap"> -->
+    <div class="card-block">
+      <h4 class="card-title">USERNAME:<%=d.user.name%></h4>
+      <p class="card-text">TITLE</p>
+    </div>
+  </div>
+  </div>
+<%end%>
 </div>
-<div>
   Designs in progress:
+  <ul class="list-group">
+    <div class="row">
+
   <% @unpublished_designs.each do |d| %>
+    <div class="col-md-3">
+      <li class="list-group-item">
+      <%= link_to ("NAME #{d.name ||d.id}"), edit_design_path(d.id) %>
+      <td><%= link_to 'Edit', edit_design_path(d) %></td>
+      <td><%= link_to 'Destroy', d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </li>
+  </div>
+  <%end%>
 
-      <%= link_to (d.name ||d.id), edit_design_path(d.id),:class => 'img-thumbnail'  %>
-      <%end%>
-
-</div>
+    </div>
+  </ul>
 
 
 

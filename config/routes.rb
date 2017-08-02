@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  root to: 'designs#new'
+  root to: 'designs#index'
 
 
   # from notes:

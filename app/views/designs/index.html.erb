@@ -1,7 +1,10 @@
+<div class="container">
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Designs</h1>
-
+<!--
 <table>
   <thead>
     <tr>
@@ -19,11 +22,34 @@
         <td><%= link_to 'Show', design %></td>
         <td><%= link_to 'Edit', edit_design_path(design) %></td>
         <td><%= link_to 'Destroy', design, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% end %>
 
+        <div>
+
+        </div>
+      </tr>
+  </tbody>
+</table> -->
+<h1>Published designs:</h1>
+<div class="row">
+
+<% @published_designs.each do |d| %>
+    <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_120/#{d.image}.png" %>
+<div class="col-md-3">
+  <div class="card" style="width: 20rem;">
+
+    <%= link_to (cl_image_tag url), design_path(d.id),:class => 'card-img-top img-thumbnail'%>
+    <!-- <img class="" src="..." alt="Card image cap"> -->
+    <div class="card-block">
+      <h4 class="card-title">USERNAME:<%=d.user.name%></h4>
+      <p class="card-text">TITLE</p>
+    </div>
+  </div>
+  </div>
+<%end%>
+</div>
 <br>
 
 <%= link_to 'New Design', new_design_path %>
+
+</div>

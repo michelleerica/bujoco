@@ -10,5 +10,6 @@
 
  <script>
   var elements = <%= raw @design.elements.to_json(include: :flourish) %>;
+  var designData = <%= raw @design.to_json %>;
  </script>
 <!-- </div> -->
