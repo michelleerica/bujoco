@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
 
 
+
   root to: 'designs#index'
-  get '/bujoco' => 'application#bujoco' ## what is bujoco
+  get 'home/about'
 
-
-  # from notes:
 
   get '/login' => 'session#new' ## login form
   post '/login'  => 'session#create'## check credentials and attemppt to login (set session)

@@ -2,10 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :fetch_user
 
-  def bujoco
-
-  end
-
   private
     def fetch_user
     #  session[:user_id] = nil
