@@ -6,23 +6,25 @@
 </p>
 
 
-<p>
+<div>
   Published designs:
   <% @published_designs.each do |d| %>
       <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{d.image}.png" %>
       <%= link_to (cl_image_tag url), design_path(d.id),:class => 'img-thumbnail'  %>
       <%end%>
-
+</div>
+<div>
   Designs in progress:
   <% @unpublished_designs.each do |d| %>
 
-      <%= link_to d.id, edit_design_path(d.id),:class => 'img-thumbnail'  %>
+      <%= link_to (d.name ||d.id), edit_design_path(d.id),:class => 'img-thumbnail'  %>
       <%end%>
 
+</div>
 
 
 
-</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

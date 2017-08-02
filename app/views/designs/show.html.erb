@@ -1,7 +1,7 @@
 <div class="container">
 
-  <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{@design.image}.png" %>
-  <%= link_to (cl_image_tag url), design_path(d.id) %>
+  <% url = "http://res.cloudinary.com/michelleerica/image/upload/#{@design.image}.png" %>
+  <%= link_to (cl_image_tag url), design_path(@design.id) %>
 
   <!-- <h2>Show design</h2>
   <canvas id="mainCanvas" width="1000" height="600"></canvas>

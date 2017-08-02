@@ -17,11 +17,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @published_designs = []
+    @unpublished_designs = []
+
     @current_user.designs.each do |d|
       if d.image.present?
-        @published_designs = Design.where user_id: @current_user
+        # raise '?hell'
+        @published_designs << d
+
       else
-        @unpublished_designs = Design.where user_id: @current_user
+        @unpublished_designs << d
       end
     end
   end
