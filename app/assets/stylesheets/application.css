@@ -230,6 +230,12 @@ p, #designName, button {
     background-color: transparent !important;
 }
 
+.publish:hover{
+  text-decoration: none !important;
+  color: #ad4663 !important;
+  background-color: transparent !important;
+}
+
 .about{
   width: 100%;
 }
