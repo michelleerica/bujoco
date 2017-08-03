@@ -13,8 +13,6 @@
 
       <button type="button" id="saveDesktopButton" class="btn btn-default" >Save canvas to desktop</button>
 
-
-
       <button type="button" id="saveDBButton" class="btn btn-default" >Save edits</button>
 
       <button type="button" id="updateDBButton" class="btn btn-default" >Update edits</button>
@@ -32,41 +30,58 @@
 <div class="row">
   <div class="col-xs-6 col-md-2">
 
-    <!--generate flourishes from DB  -->
-
-<!-- Flourish.where("category":"month") -->
-
-
-  <!-- <#% @flourishes.order('category').each do |category| %>
-    <#%category %>
-
-  <#%<end>%> -->
-
 
     <div class="flourishes img-rounded">
 
-      FLOURISH: <%=@flourish%> <%=@val%>
-      <%@flourishes.where("category":"borders").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-      <br>
 
-      <%@flourishes.where("category":"month").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-      <br>
+  <div class="tab">
+    <button class="tablinks btn-xs" onclick="openFlourish(event, 'months')">Months</button>
 
-      <%@flourishes.where("category":"day").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-      <br>
-      <%@flourishes.where("category":"scribbles").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
+    <button class="tablinks btn-xs" onclick="openFlourish(event, 'days')">Days</button>
+    <button class="tablinks btn-xs" onclick="openFlourish(event, 'border')">Border</button>
+    <button class="tablinks btn-xs" onclick="openFlourish(event, 'scribbles')">Scribbles</button>
+
+  </div>
+
+<div id="months" class="tabcontent">
+
+  <%@flourishes.where("category":"month").each do |f|%>
+    <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
+    <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
+  <%end%>
+
+</div>
+
+<div id="days" class="tabcontent">
+
+  <%@flourishes.where("category":"day").each do |f|%>
+    <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
+    <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
+  <%end%>
+
+</div>
+
+<div id="border" class="tabcontent">
+
+  <%@flourishes.where("category":"border").each do |f|%>
+    <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
+    <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
+  <%end%>
+
+</div>
+
+<div id="scribbles" class="tabcontent">
+
+  <%@flourishes.where("category":"scribbles").each do |f|%>
+    <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
+    <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
+  <%end%>
+
+</div>
+
+
+
+
 
     </div>
 

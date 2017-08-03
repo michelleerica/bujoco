@@ -5,14 +5,26 @@ class DesignsController < ApplicationController
   before_action :flourish_generator, only: [:show, :edit, :update, :new]
   before_action :design_create_or_find, only: [:create, :cloudinary]
 
-  # from FRAGA
 
   # before_action :check_if_admin, only: [:edit, :destroy]
   before_action :check_if_logged_in, except: [:index, :show]
 
 
   def flourish_generator
-    @flourish_category = Flourish.group(:category).count
+
+    # not working
+    flourish_category = Flourish.group(:category).count
+
+    @flourish_selector = []
+
+    flourish_category.each_with_index do |cat, i|
+        # Flourish.where(category: cat)
+        puts "i .... #{i}"
+        flourish_sort = [i => {cat => Flourish.where(category: cat)}]
+        @flourish_selector << flourish_sort
+    end
+
+
 
   end
 
@@ -97,7 +109,6 @@ class DesignsController < ApplicationController
     params[:elements].values.each_with_index do |elem,i|
       puts elem
         # if @design = Design.find_or_create_by(id: @design_id, name: params[:name], user: @current_user)
-
       elem_to_save = Element.create (elem)
       @design.elements << elem_to_save
     end
