@@ -1,10 +1,9 @@
 
 <div class="container">
-  <h1>Editing Design</h1>
+  <h1>Edit Design</h1>
 
   <%= render 'form', design: @design %>
 
-  <%= link_to 'Delete', design_path(@design), method: :delete, data: { confirm: 'Are you sure?' } %> ||
   <%= link_to 'Your designs', @design %> |
   <%= link_to 'Back', designs_path %>
 

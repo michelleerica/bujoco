@@ -128,15 +128,15 @@ f55 = Flourish.create category:"basics", location_storage:"line", name:"line"
 
 f56 = Flourish.create category:"divider", location_storage:"divider-squig", name:"divider-squig"
 
-f57 = Flourish.create category:"goals", location_storage:"continue", name:"continue"
+f57 = Flourish.create category:"goals", location_storage:"continuei", name:"continuei"
 
-f58 = Flourish.create category:"goals", location_storage:"start", name:"start"
+f58 = Flourish.create category:"goals", location_storage:"starti", name:"starti"
 
-f59 = Flourish.create category:"goals", location_storage:"stop", name:"stop"
+f59 = Flourish.create category:"goals", location_storage:"stopi", name:"stopi"
 
-f60 = Flourish.create category:"goals", location_storage:"goals", name:"goals"
+f60 = Flourish.create category:"goals", location_storage:"goalsi", name:"goalsi"
 
-f61 = Flourish.create category:"basics", location_storage:"todoexample", name:"todoexample"
+f61 = Flourish.create category:"basics", location_storage:"todoexamplei", name:"todoexamplei"
 
 f62 = Flourish.create category:"divider", location_storage:"divider-heartbeat", name:"divider-heartbeat"
 

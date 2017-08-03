@@ -3,20 +3,14 @@
 
   <div class="row">
 
-    <div class="col-xs-12 col-md-10">
+    <div class="">
 
       Design Name:
       <input type="Design name" placeholder="design name" id="designName">
 
-      <button type="button" id="saveClButton" class="btn btn-default" >Publish</button>
+      <button type="button" id="saveDBButton" class="btn btn-primary outline" >Save edits</button>
 
-      <button type="button" id="saveDesktopButton" class="btn btn-default" >Save canvas to desktop</button>
-
-      <button type="button" id="saveDBButton" class="btn btn-default" >Save edits</button>
-
-      <button type="button" id="updateDBButton" class="btn btn-default" >Update edits</button>
-
-      <button id="delete" class="btn btn-default" >Delete selected object</button>
+      <button id="delete" class="btn btn-primary outline" >Delete selected object</button>
 
       <div id="designName"><%=@design.name%></div>
 
@@ -61,7 +55,7 @@
 
   <!--  -->
     <div class="col-xs-12 col-sm-6 col-md-9">
-        <canvas id="mainCanvas" width="1000" height="600" class="center-block" designId="<%=@design_id%>"></canvas>
+        <canvas id="mainCanvas" width="900" height="500" class="center-block" designId="<%=@design_id%>"></canvas>
 
     </div>
   </div>
@@ -83,6 +77,12 @@
   <div class="hidden">
     <%= cl_image_upload_tag(:design_id, :resource_type => :image, :html => {:class => "hidden_file", :id => 'image_upload'}) %>
   </div>
+  <br>
+  <button type="button" id="saveClButton" class="btn btn-primary outline" >Finalise</button>
+
+  <button type="button" id="saveDesktopButton" class="btn btn-primary outline" >Save to desktop</button>
+
+  <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path %></button>
 
 
 

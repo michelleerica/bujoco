@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-
-
-
   root to: 'designs#index'
-  get 'home/about'
+  get '/about' => 'home#about'
 
 
   get '/login' => 'session#new' ## login form
