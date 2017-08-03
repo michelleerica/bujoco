@@ -47,7 +47,7 @@
       <% @flourishes.each do |catname, flourishes| %>
       <div id="<%= catname %>" class="tabcontent">
         <% flourishes.each do |f| %>
-        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_70/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
+        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_65/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
         <% end %>
       </div>
       <% end %>
@@ -58,7 +58,7 @@
 
   </div>
   <br>
-    <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path, class:'back' %></button>
+    <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path, class:'noLink' %></button>
 </div>
 
   <!--  -->
@@ -70,6 +70,11 @@
         <button type="button" id="saveClButton" class="btn btn-primary outline" >Finalise</button>
 
         <button type="button" id="saveDesktopButton" class="btn btn-primary outline" >Save to desktop</button>
+
+        <% if @design.id.present? %>
+          <button type="button" class="btn btn-primary outline" >
+            <%=link_to 'Delete', design_path(@design.id), method: :delete, data: { confirm: 'Are you sure?' }, class:'noLink' %></button>
+        <%end%>
       </div>
     </div>
   </div>

@@ -128,6 +128,11 @@ if ($("body.designs.new").length ||
     });
   });
 
+  // -------- user warning before navigating away --------/
+
+  $('a').click(function(){
+    alert('Make sure you save before you go, otherwise your changes will be lost')
+  })
 } // new / edit
 
 }); // end of document ready

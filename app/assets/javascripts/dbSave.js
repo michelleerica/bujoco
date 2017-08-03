@@ -8,18 +8,18 @@ $(document).ready(function(){
 
 
     if (designData.id === null){
-      // debugger;
+      debugger;
 
-      if ($('#setDesignName').val() === "" ||
-          design_id !== null){
+      if ($('#setDesignName').val() === "" &&
+          design_id === null){
         $('#saveStatus').text('Please name your design');
         return;
 
       }
 
-
       var elements = canvas.getObjects();
       console.log(elements);
+
 
       var elems = [];
 
@@ -42,6 +42,10 @@ $(document).ready(function(){
         elems.push(elementInfo);
       }
       console.log(elems);
+      if (elems ===null){
+        $('#saveStatus').text('There is nothing to save');
+        return;
+      }
       saveElementData(elems)
 
     } else {
@@ -69,6 +73,10 @@ $(document).ready(function(){
         elems.push(elementInfo);
       }
       console.log(elems);
+      if (elems ===null){
+        $('#saveStatus').text('There is nothing to save');
+        return;
+      }
       updateElementData(elems)
     }
   });
@@ -100,8 +108,7 @@ $(document).ready(function(){
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
-      $('#saveStatus').text('DB save worked');
-      $('#designName').empty();
+      $('#saveStatus').text('Your changes have been saved!');
       $('#designName').text(designData.name);
 
 
@@ -145,8 +152,7 @@ $(document).ready(function(){
     }).done(function(data){
       // debugger;
       console.log('DATA in ajax', data);
-      $('#saveStatus').text('DB save worked');
-
+      $('#saveStatus').text('Your changes have been saved!');
       // save design_id in a global variable,
       // and send it with all future requests
       // to prevent a new design being created each

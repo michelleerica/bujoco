@@ -6,11 +6,11 @@
   <%= cl_image_tag url %>
 
 </div>
-<#% if @current_user.present? == false%>
+<!-- <#% if @current_user.present? == false%>
   <%=link_to 'Save to my designs', edit_design_path(@design) %>
-  <#%end%>
+  <#%end%> -->
 
 
-  <%= link_to 'Edit', edit_design_path(@design) %> | -->
-  <%= link_to 'Back', designs_path %>
-</div>
+  <!-- <%= link_to 'Edit', edit_design_path(@design) %> | -->
+  <br>
+  <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', design_path, class:'noLink' %></button></div>

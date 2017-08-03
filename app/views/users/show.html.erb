@@ -29,7 +29,7 @@
   <% @unpublished_designs.each do |d| %>
     <div class="col-md-2">
       <li class="list-group-item">
-      <%= link_to d.name, edit_design_path(d) %>
+      <%= link_to d.name, edit_design_path(d), class:'noLink' %>
     </li>
   </div>
   <%end%>
