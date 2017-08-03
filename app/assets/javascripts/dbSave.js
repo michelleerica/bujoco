@@ -7,7 +7,7 @@ $(document).ready(function(){
     // debugger;
 
 
-    if (designData.id === null){
+    if (designData.id === null && design_id === null){
       debugger;
 
       if ($('#setDesignName').val() === "" &&
