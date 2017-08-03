@@ -18,7 +18,7 @@
     <div class="card-block">
       <h4 class="card-title">USERNAME:<%=d.user.name%></h4>
       <p class="card-text">TITLE</p>
-      <p class="card-text"><%= link_to 'Delete', design_path(d.id), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></p>
+      <p class="card-text"><%= link_to 'Delete', design_path(d.id), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class:"delete" %></p>
     </div>
   </div>
   </div>

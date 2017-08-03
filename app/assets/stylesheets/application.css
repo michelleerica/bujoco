@@ -165,13 +165,24 @@ div.tab button.active {
 
 body, a, .navbar{
   font-family: 'Amatic SC', cursive;
-
-}
-
-a, .navbar, p, #designName {
   font-size: 30px;
 }
 
+p, #designName, button {
+  font-size: 20px !important;
+}
+
+.back {
+  font-size: 20px !important;
+  color: blue !important;
+}
+
+.back:hover{
+  text-decoration: none !important;
+  color: blue !important;
+  background-color: transparent !important;
+
+}
 .navbar-brand{
   font-size: 50px;
 }
@@ -180,7 +191,6 @@ a, .navbar, p, #designName {
   font-style: italic;
   font-family: 'Amatic SC', cursive;
   font-size: 20px;
-
 }
 
 #explain{
@@ -193,4 +203,8 @@ a, .navbar, p, #designName {
 
 .navbar{
   background-color: #DBC3D2;
+}
+
+.delete{
+  font-size: 15px;
 }

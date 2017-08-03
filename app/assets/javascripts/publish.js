@@ -64,6 +64,7 @@ $(document).ready(function(){
             $('#flourishes').click(false);
 
             notifySave();
+            debugger;
 
           }).fail(function(xhr, err, status) {
                 console.log(xhr, err, status);
@@ -75,6 +76,9 @@ $(document).ready(function(){
     var notifySave = function(){
       $('#saveStatus').text('CLOUDINARY SAVE successful').addClass('animated bounce flash');
 
+      a = $('<div>');
+      a.html("<a href='/designs'>HELLEOEOJLDSJLSF</a>");
+      a.appendTo('body')
 
     }
     // winNotification: function(winner) {
