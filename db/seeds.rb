@@ -13,7 +13,7 @@ u1 = User.create name:"michelle", email:"michelle@michelle.com", password:"chick
 u2 = User.create name:"luke", email:"luke@ga.com", password:"chicken", is_admin: false
 
 Design.destroy_all
-d1 = Design.create
+d1 = Design.create name:"example"
 
 Element.destroy_all
 
@@ -44,11 +44,11 @@ f11 = Flourish.create category:"divider", location_storage:"divider-wide", name:
 
 f12 = Flourish.create category:"scribbles", location_storage:"little-flower", name:"little-flower"
 
-f13 = Flourish.create category:"border", location_storage:"border-tri", name:"border-tri"
+f13 = Flourish.create category:"divider", location_storage:"border-tri", name:"border-tri"
 
-f14 = Flourish.create category:"border", location_storage:"border-vine", name:"border-vine"
+f14 = Flourish.create category:"divider", location_storage:"border-vine", name:"border-vine"
 
-f15 = Flourish.create category:"border", location_storage:"border-dash", name:"border-dash"
+f15 = Flourish.create category:"divider", location_storage:"border-dash", name:"border-dash"
 
 f16 = Flourish.create category:"scribbles", location_storage:"hearts-cluster", name:"hearts-cluster"
 
@@ -120,6 +120,7 @@ f51 = Flourish.create category:"days", location_storage:"days-abrev", name:"days
 
 f52 = Flourish.create category:"heading", location_storage:"yearlylog", name:"yearlylog"
 
+
 f53 = Flourish.create category:"heading", location_storage:"todo", name:"todo"
 
 f54 = Flourish.create category:"basics", location_storage:"key", name:"key"
@@ -136,11 +137,12 @@ f59 = Flourish.create category:"goals", location_storage:"stopi", name:"stopi"
 
 f60 = Flourish.create category:"goals", location_storage:"goalsi", name:"goalsi"
 
-f61 = Flourish.create category:"basics", location_storage:"todoexamplei", name:"todoexamplei"
-
 f62 = Flourish.create category:"divider", location_storage:"divider-heartbeat", name:"divider-heartbeat"
 
 
+f63 = Flourish.create category:"heading", location_storage:"monthlylog", name:"monthlylog"
+
+f64 = Flourish.create category:"heading", location_storage:"weeklylog", name:"weeklylog"
 
 
 # Elements
