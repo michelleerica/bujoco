@@ -10,7 +10,8 @@ $(document).ready(function(){
     if (designData.id === null){
       // debugger;
 
-      if ($('#designName').val() === ""){
+      if ($('#setDesignName').val() === "" ||
+          design_id !== null){
         $('#saveStatus').text('Please name your design');
         return;
 
@@ -79,7 +80,7 @@ $(document).ready(function(){
 
 
     var data = {
-      name: $('#designName').val(),
+      name: $('#setDesignName').val(),
       elements: info
     };
     // debugger;
@@ -100,6 +101,8 @@ $(document).ready(function(){
       // debugger;
       console.log('DATA in ajax', data);
       $('#saveStatus').text('DB save worked');
+      $('#designName').empty();
+      $('#designName').text(designData.name);
 
 
       // save design_id in a global variable,
@@ -118,7 +121,7 @@ $(document).ready(function(){
     console.log('UPDATE ELEMENT element info:', info);
     // debugger;
     var data = {
-      name: $('#designName').val(),
+      name: $('#setDesignName').val(),
       elements: info,
       design_id: designData.id //todo
     };

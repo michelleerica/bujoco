@@ -21,6 +21,7 @@
 //= require fileSaver
 //= require main
 //= require showDesign
+//= require dbSave
 
 
 //= require_tree .

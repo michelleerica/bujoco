@@ -1,24 +1,24 @@
 
 <div>
 
-
   <div class="row">
 
     <div class="col-xs-6 col-md-3">
+      <div id="designName"></div>
+      <%unless @design.name.present?%>
+        <input type="Design name" placeholder="Design name" id="setDesignName" class="form-control"></input>
 
-      <input type="Design name" placeholder="Design name" id="designName" class="form-control" required>
+      <%end%>
 
 
-
-    </div>
+</div>
     <div class="col-xs-12 col-sm-6 col-md-9">
 
       <button type="button" id="saveDBButton" class="btn btn-primary outline" >Save edits</button>
 
       <button id="delete" class="btn btn-primary outline" >Delete selected object</button>
 
-      <div id="designName"><%=@design.name%></div>
-
+      <br>
       <div id='saveStatus'>  </div>
       <br>
     </div>
@@ -57,12 +57,22 @@
   </div>
 
   </div>
+  <br>
+    <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path %></button>
 </div>
 
   <!--  -->
     <div class="col-xs-12 col-sm-6 col-md-9">
         <canvas id="mainCanvas" width="900" height="500" class="center-block" designId="<%=@design_id%>"></canvas>
 
+      <br>
+      <div class="baseButton">
+        <button type="button" id="saveClButton" class="btn btn-primary outline" >Finalise</button>
+
+        <button type="button" id="saveDesktopButton" class="btn btn-primary outline" >Save to desktop</button>
+
+
+      </div>
     </div>
   </div>
 
@@ -84,11 +94,7 @@
     <%= cl_image_upload_tag(:design_id, :resource_type => :image, :html => {:class => "hidden_file", :id => 'image_upload'}) %>
   </div>
   <br>
-  <button type="button" id="saveClButton" class="btn btn-primary outline" >Finalise</button>
 
-  <button type="button" id="saveDesktopButton" class="btn btn-primary outline" >Save to desktop</button>
-
-  <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path %></button>
 
 
 

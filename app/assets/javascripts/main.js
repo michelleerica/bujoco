@@ -76,68 +76,6 @@ if ($("body.designs.new").length ||
   	});
   });
 
-  // // ------ image upload to cloudinary -------//
-  //
-  // var info = "";
-  //
-  // $("#saveClButton").click(function(){
-  //   $("#mainCanvas").get(0).toBlob(function(blob){
-  //     $('#image_upload').unsigned_cloudinary_upload("test123",
-  //       { cloud_name: 'michelleerica', tags: 'browser_uploads', backup: true },
-  //            { multiple: true }
-  //     )
-  //       .bind('cloudinarydone', function(e, data) {
-  //            console.log('DONE!', data);
-  //            // ajax send to rails server: data.result.public_id
-  //            public_id = data.result.public_id
-  //
-  //            debugger;
-  //           saveClData(public_id);
-  //          })
-  //          .fileupload('add', { files: [ blob ] });
-  //        });
-  //
-  // })
-  //   //  ------ save cloudinary data to DB ------- //
-  //
-  // var saveClData = function(image){
-  //   var data = {
-  //     image: image,
-  //   };
-  //   // debugger;
-  //
-  //   if (design_id){
-  //     data.design_id = design_id;
-  //   } else if (designData.id !== null){
-  //     data.design_id = designData.id
-  //   }
-  //
-  //   console.log('line 115: ', image, 'id: ', design_id);
-  //
-  //   $.ajax({
-  //     url: "/designs/cloudinary",
-  //     data: data,
-  //     dataType: 'json',
-  //     method: 'POST'
-  //   }).done(function(data){
-  //     // debugger;
-  //     console.log('DATA in ajax', data);
-  //     $('#saveStatus').text('CLOUDINARY SAVE successful')
-  //     // design_id = data.id;
-  //     console.log('design_id', design_id,'data.id', data.id);
-  //     canvas.deactivateAll();
-  //     canvas.selection = false;
-  //     canvas.forEachObject(function(o) {
-  //         o.selectable = false;
-  //     });
-  //     $('#flourishes').click(false);
-  //
-  //   }).fail(function(xhr, err, status) {
-  //         console.log(xhr, err, status);
-  //   });
-  //
-  // }; //ajax request
-
   //------------ click event for flourishes ------------ //
   // when flourish clicked, flourish added to canvas
   $(".flourishes").click(function(){
@@ -148,7 +86,7 @@ if ($("body.designs.new").length ||
       var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/" + public_id + ".png";
 
       fabric.Image.fromURL(src, function(oImg){
-        oImg.scale(.2);
+        oImg.scale(.3);
         oImg.id = flourish_id;
         canvas.add(oImg);
       }, {crossOrigin: 'Anonymous'});

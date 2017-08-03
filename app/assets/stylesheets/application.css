@@ -34,7 +34,9 @@
   margin-right: auto;
 }
 
-
+body{
+  background-color: #eeeeee
+}
 
 canvas {
   width: 100%;
@@ -163,16 +165,16 @@ div.tab button.active {
 
 body, a, .navbar{
   font-family: 'Amatic SC', cursive;
+
 }
 
-a, .navbar, button, p {
+a, .navbar, p, #designName {
   font-size: 20px;
 }
 
-.active{
+.navbar-brand{
   font-size: 50px;
 }
-
 
 .quoteLife {
   font-style: italic;
@@ -183,4 +185,12 @@ a, .navbar, button, p {
 
 #explain{
   font-size: 20px;
+}
+
+.baseButton{
+  font-size: 30px;
+}
+
+.navbar{
+  background-color: lavenderBlush;
 }
