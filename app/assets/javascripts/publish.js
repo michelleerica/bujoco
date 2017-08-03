@@ -74,10 +74,10 @@ $(document).ready(function(){
 
 
     var notifySave = function(){
-      $('#saveStatus').text('CLOUDINARY SAVE successful').addClass('animated bounce flash');
+      // $('#saveStatus').text('CLOUDINARY SAVE successful').addClass('animated bounce flash');
 
       a = $('<div>');
-      a.html("<a href='/designs'>HELLEOEOJLDSJLSF</a>");
+      a.html("<a class ='publish' href='/designs'>Published!</a>").addClass('animated bounce flash');
       a.appendTo('body')
 
     }
