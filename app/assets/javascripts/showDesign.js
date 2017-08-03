@@ -8,24 +8,24 @@ $(document).ready(function(){
   console.log('length', elements.length);
 
   for (var i = 0; i < elements.length; i++) {
-    let e = elements[i];
+    var e = elements[i];
     console.log('element: ', e);
 
     var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+ e.flourish.name +".png";
 
     var flourish = fabric.Image.fromURL(src, function(showImg){
-      // debugger;
-      showImg.setLeft(e.left); console.log('e.left', e.left);
-      showImg.setTop(e.top);
-      showImg.setAngle(e.angle);
-      showImg.setScaleX(e.scaleX);
-      showImg.setScaleY(e.scaleY);
-      showImg.id = e.flourish.id;
+      // used .bind(e) to set the value of 'this'
+      showImg.setLeft(this.left); console.log('this.left', this.left);
+      showImg.setTop(this.top);
+      showImg.setAngle(this.angle);
+      showImg.setScaleX(this.scaleX);
+      showImg.setScaleY(this.scaleY);
+      showImg.id = this.flourish.id;
 
       canvas.add(showImg);
       console.log('ON', i);
 
-    }, {crossOrigin: 'Anonymous'})
+    }.bind(e), {crossOrigin: 'Anonymous'})
 
   }
 
