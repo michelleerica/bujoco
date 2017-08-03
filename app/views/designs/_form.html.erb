@@ -33,77 +33,23 @@
   <div class="img-rounded">
 
     <!-- toolbar -->
-    <div class="tab">
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'months')">Months</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'days')">Days</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'border')">Border</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'scribbles')">Scribbles</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'banner')">Banner</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'divider')">Divider</button>
-      <button class="tablinks btn-xs" onclick="openFlourish(event, 'quote')">Quote</button>
 
+    <div class="tab">
+      <% @flourishes.each do |catname, _| %>
+      <button class="tablinks btn-xs" onclick="openFlourish(event, '<%= catname %>')"><%= catname.upcase_first %></button>
+      <% end %>
     </div>
     <div class="flourishes">
-    <div id="months" class="tabcontent">
 
-      <%@flourishes.where("category":"month").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
+      <% @flourishes.each do |catname, flourishes| %>
+      <div id="<%= catname %>" class="tabcontent">
+        <% flourishes.each do |f| %>
+        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
+        <% end %>
+      </div>
+      <% end %>
 
-    </div>
 
-    <div id="days" class="tabcontent">
-
-      <%@flourishes.where("category":"day").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
-
-    <div id="border" class="tabcontent">
-
-      <%@flourishes.where("category":"border").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
-
-    <div id="scribbles" class="tabcontent">
-
-      <%@flourishes.where("category":"scribbles").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
-
-    <div id="banner" class="tabcontent">
-
-      <%@flourishes.where("category":"banner").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/h_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
-    <div id="divider" class="tabcontent">
-
-      <%@flourishes.where("category":"divider").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
-    <div id="quote" class="tabcontent">
-
-      <%@flourishes.where("category":"quote").each do |f|%>
-        <% location = "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png"%>
-        <%= (cl_image_tag location, :id => f.id, public_id: f.name  )%>
-      <%end%>
-
-    </div>
     </div>
   </div>
 

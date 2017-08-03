@@ -57,13 +57,17 @@ class DesignsController < ApplicationController
   # GET /designs/new
   def new
     @design = Design.new
-    @flourishes = Flourish.all
+    @flourishes =
+    Flourish.all.group_by(&:category)
+
 
   end
 
   # GET /designs/1/edit
   def edit
-    @flourishes = Flourish.all
+    @flourishes =
+    Flourish.all.group_by(&:category)
+
 
   end
 
