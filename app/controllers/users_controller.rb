@@ -1,8 +1,8 @@
 # from FRAGA
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-  # before_action :check_if_logged_in, except: [:show]
-  # before_action :check_if_admin, only: [:index]
+  before_action :check_if_logged_in, except: [:show]
+  before_action :check_if_admin, only: [:index]
 
   def get_user
     @user = User.find params["id"]
@@ -88,7 +88,6 @@ end
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end
