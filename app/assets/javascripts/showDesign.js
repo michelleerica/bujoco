@@ -3,11 +3,12 @@ var canvas;
 
 $(document).ready(function(){
 
+// ----------- render canvas and elements (positions and flourish_id as saved to DB ------ //
+
   if ($("body.designs.edit").length){
     console.log(elements);
     console.log('length', elements.length);
     $('#designName').text(designData.name);
-
 
     for (var i = 0; i < elements.length; i++) {
       var e = elements[i];

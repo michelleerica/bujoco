@@ -1,17 +1,19 @@
 var design_id = null;
 
 $(document).ready(function(){
-  //------------ identify whats on canvas and save ------------ //
+
+  //------------ identify what is on canvas and save ------------
 
   $("#saveDBButton").click(function(){
     // debugger;
 
-
+    // ------ function obtaining info for initial save -----//
     if (designData.id === null && design_id === null){
-      debugger;
+      // debugger;
 
-      if ($('#setDesignName').val() === "" &&
-          design_id === null){
+      // ------ reminder to provide design name  -----//
+
+      if ($('#setDesignName').val() === ""){
         $('#saveStatus').text('Please name your design');
         return;
       }
@@ -47,7 +49,10 @@ $(document).ready(function(){
       }
       saveElementData(elems)
 
+
     } else {
+      // ------ function obtaining info for subsequent saves -----//
+
       var elements = canvas.getObjects();
       console.log(elements);
 
@@ -80,6 +85,7 @@ $(document).ready(function(){
     }
   });
 
+  //----- function called on initial save ----//
   var saveElementData = function(info){
     console.log('IN SAVE ELEMENT DATA FUNCTION: element info:', info);
 
@@ -88,6 +94,7 @@ $(document).ready(function(){
       elements: info
     };
 
+    // if on edit page, design will have designData.id (provided as raw JSON)
     if (designData.id !== null){
       data.design_id = designData.id;
     }
@@ -115,6 +122,8 @@ $(document).ready(function(){
       console.log(xhr, err, status);
     });
   }; //click handler
+
+  // function called on subsaq saves to save updated info to DB so element positions tracked
 
   var updateElementData = function(info){
     console.log('UPDATE ELEMENT element info:', info);

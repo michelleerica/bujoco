@@ -14,6 +14,13 @@ u2 = User.create name:"luke", email:"luke@ga.com", password:"chicken", is_admin:
 
 Design.destroy_all
 d1 = Design.create name:"example"
+d2 = Design.create name:"august", image:"qe0hz0txz397ndtjou3p"
+d3 = Design.create name:"Q1", image:"j80wgr6uiz9hrleomxr5"
+d4 = Design.create name:"Sunday", image:"rgapov6utvpbnz9d7uuy"
+d5 = Design.create name:"August spread", image:"pqr1dkicomnawqqdmw0j"
+d6 = Design.create name:"Goals", image:"rxvvonlb8wj15ttoaw6b"
+
+
 
 Element.destroy_all
 
@@ -157,7 +164,8 @@ f43.elements << e2
 
 d1.elements << e1 << e2
 
-u1.designs << d1
+u1.designs << d1 << d3 << d5
+u2.designs << d2 << d4 << d6
 
 #
 # e1 = Element.create blx: bly: brx: bry: tlx: tly: trx: try:

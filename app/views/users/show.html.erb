@@ -13,9 +13,8 @@
     <%= link_to (cl_image_tag url), design_path(d.id),:class => 'card-img-top img-thumbnail'%>
     <!-- <img class="" src="..." alt="Card image cap"> -->
     <div class="card-block">
-      <h4 class="card-title">USERNAME:<%=d.user.name%></h4>
-      <p class="card-text">TITLE</p>
-      <td><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <h4 class="card-title"><%=d.name%> by <%=d.user.name%></h4>
+      <td class='shrink'><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' }, class:"delete" %></td>
 
     </div>
   </div>

@@ -64,7 +64,7 @@ $(document).ready(function(){
             $('#flourishes').click(false);
 
             notifySave();
-            debugger;
+            // debugger;
 
           }).fail(function(xhr, err, status) {
                 console.log(xhr, err, status);
@@ -81,21 +81,6 @@ $(document).ready(function(){
       a.appendTo('body')
 
     }
-    // winNotification: function(winner) {
-    //   players[ winner ].score++;
-    //   $('.cell').css('backgroundColor', '#FDF0D5');
-    //   $('.grid').addClass('animated bounce flash');
-    //   $("body").css('backgroundColor', '#D81E5B');
-    //   $("h1").addClass('notification animated bounce swing rollIn');
-    //   $(".scoreboard").addClass('animated swing');
-    //   $(players[ winner ].scoreID).html(players[ winner ].score);
-    //   if (players[ winner ].number === "billMurray"){
-    //     $("h1").html("Bill Murray won!");
-    //   } else {
-    //     $("h1").html("Player " +  players[ winner ].number  + " won!");
-    //   }
-    //   gameLogic.gameOver()
-    //   return;
-    // }
+    
   } // if statement
 });

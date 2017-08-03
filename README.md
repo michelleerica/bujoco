@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Screenshot
 
-Things you may want to cover:
 
-* Ruby version
+Introduction
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+Link to Heroku
+  https://projectbujo.herokuapp.com/
 
-* Database initialization
+Packages used
+  fabricjs
+  jquery-rails
+  cloudinary
 
-* How to run the test suite
+Features
+  Users can:
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+Known bugs
+  *
 
-* ...
+Future releases
+  *
+
+Lessons learned / wins
+  *
