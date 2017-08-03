@@ -2,18 +2,13 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
 <h1>Published designs:</h1>
 <div class="row">
 
 <% @published_designs.each do |d| %>
     <% url = "http://res.cloudinary.com/michelleerica/image/upload/h_120/#{d.image}.png" %>
 <div class="col-md-3">
-  <div class="card" style="width: 20rem;">
+  <div class="card" style="width: 30rem;">
 
     <%= link_to (cl_image_tag url), design_path(d.id),:class => 'card-img-top img-thumbnail'%>
     <!-- <img class="" src="..." alt="Card image cap"> -->
