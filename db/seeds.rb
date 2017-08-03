@@ -6,15 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# User.destroy_all
+User.destroy_all
+
+u1 = User.create name:"michelle", email:"michelle@michelle.com", password:"chicken", is_admin: true
+
+u2 = User.create name:"luke", email:"luke@ga.com", password:"chicken", is_admin: false
 
 Design.destroy_all
 d1 = Design.create
 
-# Element.destroy_all
+Element.destroy_all
 
 Flourish.destroy_all
-
 
 f2 = Flourish.create category:"scribbles", location_storage:"heart", name:"heart"
 
@@ -29,7 +32,7 @@ arrowdown", name:"arrowdown"
 
 f7 = Flourish.create category:"scribbles", location_storage:"arrowstraight", name:"arrowstraight"
 
-f8 = Flourish.create category:"banner", location_storage:"banner-small_yxirbx ", name:"banner-small"
+f8 = Flourish.create category:"banner", location_storage:"banner-small", name:"banner-small"
 
 f8 = Flourish.create category:"banner", location_storage:"banner-wide", name:"banner-wide"
 
@@ -101,10 +104,64 @@ f42 = Flourish.create category:"border", location_storage:"border-dashed", name:
 
 f43 = Flourish.create category:"quote", location_storage:"quote-poodles", name:"quote-poodles"
 
+f44 = Flourish.create category:"quote", location_storage:"quote-omnia", name:"quote-omnia"
+
+f45 = Flourish.create category:"heading", location_storage:"heading_habit", name:"heading_habit"
+
+f46 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f47 = Flourish.create category:"days", location_storage:"week-init", name:"week-init"
+
+f48 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f49 = Flourish.create category:"border", location_storage:"border-squiggle", name:"border-squiggle"
+
+f50 = Flourish.create category:"border", location_storage:"border-square", name:"border-square"
+
+f51 = Flourish.create category:"days", location_storage:"days-abrev", name:"days-abrev"
+
+f52 = Flourish.create category:"heading", location_storage:"yearlylog", name:"yearlylog"
+
+f53 = Flourish.create category:"heading", location_storage:"todo", name:"todo"
+
+f54 = Flourish.create category:"basics", location_storage:"key", name:"key"
+
+f55 = Flourish.create category:"basics", location_storage:"line", name:"line"
+
+f56 = Flourish.create category:"divider", location_storage:"divider-squig", name:"divider-squig"
+
+f57 = Flourish.create category:"goals", location_storage:"continue", name:"continue"
+
+f58 = Flourish.create category:"goals", location_storage:"start", name:"start"
+
+f59 = Flourish.create category:"goals", location_storage:"stop", name:"stop"
+
+f60 = Flourish.create category:"goals", location_storage:"goals", name:"goals"
+
+f61 = Flourish.create category:"basics", location_storage:"todoexample", name:"todoexample"
+
+f62 = Flourish.create category:"divider", location_storage:"divider-heartbeat", name:"divider-heartbeat"
+
+f63 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f64 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f65 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f66 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f67 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f68 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+f69 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
+
+
 
 # Elements
 e1 = Element.create left:75, top:0, scaleX:0.2, scaleY:0.5, angle:47
 e2 = Element.create left:100, top:100, scaleX:0.2, scaleY:0.5, angle:0
+
 
 
 
@@ -113,6 +170,7 @@ f43.elements << e2
 
 d1.elements << e1 << e2
 
+u1.designs << d1
 
 #
 # e1 = Element.create blx: bly: brx: bry: tlx: tly: trx: try:

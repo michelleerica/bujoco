@@ -72,3 +72,9 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+.toolkit{
+  height: 600px;
+  background-color: #DBC3D2;
+
+}

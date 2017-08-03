@@ -4,8 +4,10 @@
 
   <%= render 'form', design: @design %>
 
-  <%= link_to 'Show', @design %> |
+  <%= link_to 'Delete', design_path(@design), method: :delete, data: { confirm: 'Are you sure?' } %> ||
+  <%= link_to 'Your designs', @design %> |
   <%= link_to 'Back', designs_path %>
+
 </div>
 
 

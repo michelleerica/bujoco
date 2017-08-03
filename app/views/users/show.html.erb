@@ -20,20 +20,21 @@
     <div class="card-block">
       <h4 class="card-title">USERNAME:<%=d.user.name%></h4>
       <p class="card-text">TITLE</p>
+      <td><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
     </div>
   </div>
   </div>
 <%end%>
 </div>
-  Designs in progress:
+<h1>Designs in progress:</h1>
   <ul class="list-group">
     <div class="row">
 
   <% @unpublished_designs.each do |d| %>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <li class="list-group-item">
-      <%= link_to ("NAME #{d.id}"), edit_design_path(d) %>
-      <td><%= link_to 'Edit', edit_design_path(d) %></td>
+      <%= link_to ("nom#{d.name}"), edit_design_path(d) %>
       <td><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </li>
   </div>

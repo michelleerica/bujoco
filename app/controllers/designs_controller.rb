@@ -108,6 +108,7 @@ class DesignsController < ApplicationController
   # PATCH/PUT /designs/1.json
   def update
 #
+
     @design.elements.destroy_all
 
     params[:elements].values.each_with_index do |elem,i|

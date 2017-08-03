@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-6 col-md-2">
+  <div class="col-xs-6 col-md-3 tool">
 
 
   <div class="img-rounded">
@@ -39,12 +39,15 @@
       <button class="tablinks btn-xs" onclick="openFlourish(event, '<%= catname %>')"><%= catname.upcase_first %></button>
       <% end %>
     </div>
+
+    <div class="toolkit"></div>
+
     <div class="flourishes">
 
       <% @flourishes.each do |catname, flourishes| %>
       <div id="<%= catname %>" class="tabcontent">
         <% flourishes.each do |f| %>
-        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_30/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
+        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_80/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
         <% end %>
       </div>
       <% end %>
