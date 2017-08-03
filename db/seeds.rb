@@ -116,10 +116,7 @@ f49 = Flourish.create category:"border", location_storage:"border-squiggle", nam
 
 f50 = Flourish.create category:"border", location_storage:"border-square", name:"border-square"
 
-f51 = Flourish.create category:"days", location_storage:"days-abrev", name:"days-abrev"
-
 f52 = Flourish.create category:"heading", location_storage:"yearlylog", name:"yearlylog"
-
 
 f53 = Flourish.create category:"heading", location_storage:"todo", name:"todo"
 

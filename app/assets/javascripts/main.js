@@ -130,8 +130,14 @@ if ($("body.designs.new").length ||
 
   // -------- user warning before navigating away --------/
 
-  $('a').click(function(){
-    alert('Make sure you save before you go, otherwise your changes will be lost')
+
+  $('.warn').click(function(){
+    if (confirm('Make sure you save before you go, otherwise your changes will be lost')){
+      return true;
+
+    } else {
+      return false;
+    }
   })
 } // new / edit
 

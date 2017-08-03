@@ -107,7 +107,6 @@ class DesignsController < ApplicationController
   # PATCH/PUT /designs/1
   # PATCH/PUT /designs/1.json
   def update
-#
 
     @design.elements.destroy_all
 
@@ -137,7 +136,7 @@ class DesignsController < ApplicationController
 
     @design.destroy
     respond_to do |format|
-      format.html { redirect_to designs_url, notice: 'Design was successfully destroyed.' }
+      format.html { redirect_to user_path(@current_user), notice: 'Design was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
