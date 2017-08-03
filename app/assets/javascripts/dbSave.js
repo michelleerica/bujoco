@@ -14,7 +14,6 @@ $(document).ready(function(){
           design_id === null){
         $('#saveStatus').text('Please name your design');
         return;
-
       }
 
       var elements = canvas.getObjects();
@@ -84,18 +83,11 @@ $(document).ready(function(){
   var saveElementData = function(info){
     console.log('IN SAVE ELEMENT DATA FUNCTION: element info:', info);
 
-
-
-
     var data = {
       name: $('#setDesignName').val(),
       elements: info
     };
-    // debugger;
-    // if( design_id ){
-    //   // debugger;
-    //   data.design_id = design_id;
-    // }
+
     if (designData.id !== null){
       data.design_id = designData.id;
     }
@@ -130,7 +122,7 @@ $(document).ready(function(){
     var data = {
       name: $('#setDesignName').val(),
       elements: info,
-      design_id: designData.id //todo
+      design_id: designData.id // todo
     };
 
     //need to get design from params

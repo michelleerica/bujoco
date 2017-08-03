@@ -1,4 +1,4 @@
-
+<!-- design create and edit  -->
 <div>
 
   <div class="row">
@@ -9,7 +9,6 @@
         <input type="Design name" placeholder="Design name" id="setDesignName" class="form-control"></input>
 
       <%end%>
-
 
 </div>
     <div class="col-xs-12 col-sm-6 col-md-9">
@@ -34,7 +33,7 @@
   <div class="img-rounded">
 
     <!-- toolbar -->
-
+      <!-- iterate over flourishes DB by category name -->
     <div class="tab">
       <% @flourishes.each do |catname, _| %>
       <button class="tablinks btn-xs" onclick="openFlourish(event, '<%= catname %>')"><%= catname.upcase_first %></button>
@@ -51,8 +50,6 @@
         <% end %>
       </div>
       <% end %>
-
-
     </div>
   </div>
 
@@ -61,7 +58,7 @@
     <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path, class:'noLink warn' %></button>
 </div>
 
-  <!--  -->
+    <!-- blank canvas - generated in main.js file  -->
     <div class="col-xs-12 col-sm-6 col-md-9">
         <canvas id="mainCanvas" width="850" height="500" class="center-block" designId="<%=@design_id%>"></canvas>
 
@@ -79,26 +76,9 @@
     </div>
   </div>
 
-<%= form_for(design) do |f| %>
-  <% if design.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(design.errors.count, "error") %> prohibited this design from being saved:</h2>
-
-      <ul>
-      <% design.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
   <div class="hidden">
     <%= cl_image_upload_tag(:design_id, :resource_type => :image, :html => {:class => "hidden_file", :id => 'image_upload'}) %>
   </div>
   <br>
-
-
-
 
 <% end %>

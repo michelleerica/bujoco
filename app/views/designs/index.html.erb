@@ -16,13 +16,13 @@
             <%= link_to (cl_image_tag url), design_path(d.id),:class => 'card-img-top img-thumbnail'%>
             <div class="card-block">
               <h4 class="card-title"><%=d.name%> by <%=d.user.name%></h4>
-              <!-- <p class="card-text"><%=d.name%></p> -->
             </div>
           </div>
       </div>
     <%end%>
   </div>
 
+  <br>
   <br>
 
   <%= link_to 'New Design', new_design_path %>
