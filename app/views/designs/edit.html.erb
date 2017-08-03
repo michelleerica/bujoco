@@ -1,8 +1,10 @@
+
 <div class="container">
   <h1>Editing Design</h1>
 
   <%= render 'form', design: @design %>
 
+  <%= link_to 'Show', @design %> |
   <%= link_to 'Back', designs_path %>
 </div>
 
@@ -11,4 +13,3 @@
   var elements = <%= raw @design.elements.to_json(include: :flourish) %>;
   var designData = <%= raw @design.to_json %>;
  </script>
-<!-- </div> -->
