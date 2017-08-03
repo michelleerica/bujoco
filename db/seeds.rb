@@ -82,9 +82,9 @@ f30 = Flourish.create category:"month", location_storage:"november", name:"novem
 
 f31 = Flourish.create category:"month", location_storage:"december", name:"december"
 
-f32 = Flourish.create category:"day", location_storage:"sunday", name:"sunday"
+f32 = Flourish.create category:"days", location_storage:"sunday", name:"sunday"
 
-f34 = Flourish.create category:"day", location_storage:"monday", name:"monday"
+f34 = Flourish.create category:"days", location_storage:"monday", name:"monday"
 
 f35 = Flourish.create category:"day", location_storage:"tuesday", name:"tuesday"
 
@@ -111,8 +111,6 @@ f45 = Flourish.create category:"heading", location_storage:"heading_habit", name
 f46 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
 
 f47 = Flourish.create category:"days", location_storage:"week-init", name:"week-init"
-
-f48 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
 
 f49 = Flourish.create category:"border", location_storage:"border-squiggle", name:"border-squiggle"
 
@@ -142,19 +140,6 @@ f61 = Flourish.create category:"basics", location_storage:"todoexample", name:"t
 
 f62 = Flourish.create category:"divider", location_storage:"divider-heartbeat", name:"divider-heartbeat"
 
-f63 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f64 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f65 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f66 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f67 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f68 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
-
-f69 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
 
 
 

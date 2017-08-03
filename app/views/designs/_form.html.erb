@@ -29,6 +29,7 @@
 <div class="row">
   <div class="col-xs-6 col-md-3 tool">
 
+  <div class="toolkit">
 
   <div class="img-rounded">
 
@@ -40,14 +41,13 @@
       <% end %>
     </div>
 
-    <div class="toolkit"></div>
 
     <div class="flourishes">
 
       <% @flourishes.each do |catname, flourishes| %>
       <div id="<%= catname %>" class="tabcontent">
         <% flourishes.each do |f| %>
-        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_80/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
+        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_70/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
         <% end %>
       </div>
       <% end %>
@@ -57,13 +57,14 @@
   </div>
 
   </div>
+</div>
+
   <!--  -->
     <div class="col-xs-12 col-sm-6 col-md-9">
         <canvas id="mainCanvas" width="1000" height="600" class="center-block" designId="<%=@design_id%>"></canvas>
 
     </div>
   </div>
-
 
 <%= form_for(design) do |f| %>
   <% if design.errors.any? %>
