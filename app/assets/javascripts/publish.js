@@ -54,7 +54,6 @@ $(document).ready(function(){
           }).done(function(data){
             // debugger;
             console.log('DATA in ajax', data);
-            $('#saveStatus').text('CLOUDINARY SAVE successful')
             // design_id = data.id;
             console.log('design_id', design_id,'data.id', data.id);
             canvas.deactivateAll();
@@ -74,6 +73,7 @@ $(document).ready(function(){
 
 
     var notifySave = function(){
+      $('#saveStatus').text('CLOUDINARY SAVE successful').addClass('animated bounce flash');
 
 
     }

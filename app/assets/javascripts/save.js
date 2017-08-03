@@ -4,8 +4,18 @@ $(document).ready(function(){
   //------------ identify whats on canvas and save ------------ //
 
   $("#saveDBButton").click(function(){
+    // debugger;
+
 
     if (designData.id === null){
+      // debugger;
+
+      if ($('#designName').val() === ""){
+        $('#saveStatus').text('Please name your design');
+        return;
+
+      }
+
 
       var elements = canvas.getObjects();
       console.log(elements);
@@ -64,6 +74,9 @@ $(document).ready(function(){
 
   var saveElementData = function(info){
     console.log('IN SAVE ELEMENT DATA FUNCTION: element info:', info);
+
+
+
 
     var data = {
       name: $('#designName').val(),

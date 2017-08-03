@@ -10,9 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require animate
+
  *= require_tree .
  *= require_self
  */
+
+ @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
  .hidden {
    display: none;
@@ -22,7 +26,6 @@
    background-color: #DBC3D2;
    cursor: pointer;
    cursor: hand;
-
  }
 
 .center-block {
@@ -31,14 +34,13 @@
   margin-right: auto;
 }
 
+
+
 canvas {
   width: 100%;
   height: auto;
 }
 
-.quote {
-  font-style: italic;
-}
 
 /* Style the tab */
 div.tab {
@@ -70,10 +72,10 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 
 .toolkit{
@@ -152,4 +154,33 @@ div.tab button.active {
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
+}
+
+#saveStatus{
+  color: red;
+  font-size: 20px;
+}
+
+body, a, .navbar{
+  font-family: 'Amatic SC', cursive;
+}
+
+a, .navbar, button, p {
+  font-size: 20px;
+}
+
+.active{
+  font-size: 50px;
+}
+
+
+.quoteLife {
+  font-style: italic;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+
+}
+
+#explain{
+  font-size: 20px;
 }
