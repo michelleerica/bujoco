@@ -110,7 +110,6 @@ f45 = Flourish.create category:"heading", location_storage:"heading_habit", name
 
 f46 = Flourish.create category:"border", location_storage:"box-plain", name:"box-plain"
 
-f47 = Flourish.create category:"days", location_storage:"week-init", name:"week-init"
 
 f49 = Flourish.create category:"border", location_storage:"border-squiggle", name:"border-squiggle"
 
