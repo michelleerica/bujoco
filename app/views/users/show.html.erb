@@ -35,21 +35,10 @@
     <div class="col-md-2">
       <li class="list-group-item">
       <%= link_to ("nom#{d.name}"), edit_design_path(d) %>
-      <td><%= link_to 'Delete', design_path(d), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </li>
   </div>
   <%end%>
 
     </div>
   </ul>
-
-
-
-
-
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
 </div>

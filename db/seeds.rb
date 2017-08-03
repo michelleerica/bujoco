@@ -86,15 +86,15 @@ f32 = Flourish.create category:"days", location_storage:"sunday", name:"sunday"
 
 f34 = Flourish.create category:"days", location_storage:"monday", name:"monday"
 
-f35 = Flourish.create category:"day", location_storage:"tuesday", name:"tuesday"
+f35 = Flourish.create category:"days", location_storage:"tuesday", name:"tuesday"
 
-f36 = Flourish.create category:"day", location_storage:"wednesday", name:"wednesday"
+f36 = Flourish.create category:"days", location_storage:"wednesday", name:"wednesday"
 
-f37 = Flourish.create category:"day", location_storage:"thursday", name:"thursday"
+f37 = Flourish.create category:"days", location_storage:"thursday", name:"thursday"
 
-f38 = Flourish.create category:"day", location_storage:"friday", name:"friday"
+f38 = Flourish.create category:"days", location_storage:"friday", name:"friday"
 
-f39 = Flourish.create category:"day", location_storage:"saturday", name:"saturday"
+f39 = Flourish.create category:"days", location_storage:"saturday", name:"saturday"
 
 f40 = Flourish.create category:"border", location_storage:"border-hearts", name:"border-hearts"
 
