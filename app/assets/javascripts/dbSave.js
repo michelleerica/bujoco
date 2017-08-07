@@ -30,6 +30,8 @@ $(document).ready(function(){
         var angle = elements[i].get('angle');
         var scaleX = elements[i].get('scaleX');
         var scaleY = elements[i].get('scaleY');
+        var flipX = elements[i].get('flipX');
+        var flipY = elements[i].get('flipY');
         var flourish_id = elements[i].get('id');
         var elementInfo = {
           left: left,
@@ -37,6 +39,8 @@ $(document).ready(function(){
           angle: angle,
           scaleX: scaleX,
           scaleY: scaleY,
+          flipX: flipX,
+          flipY: flipY,
           flourish_id: flourish_id
         };
 
@@ -64,6 +68,8 @@ $(document).ready(function(){
         var angle = elements[i].get('angle');
         var scaleX = elements[i].get('scaleX');
         var scaleY = elements[i].get('scaleY');
+        var flipX = elements[i].get('flipX');
+        var flipY = elements[i].get('flipY');
         var flourish_id = elements[i].get('id');
         var elementInfo = {
           left: left,
@@ -71,6 +77,8 @@ $(document).ready(function(){
           angle: angle,
           scaleX: scaleX,
           scaleY: scaleY,
+          flipX: flipX,
+          flipY: flipY,
           flourish_id: flourish_id
         };
 

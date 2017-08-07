@@ -23,6 +23,8 @@ $(document).ready(function(){
         showImg.setAngle(this.angle);
         showImg.setScaleX(this.scaleX);
         showImg.setScaleY(this.scaleY);
+        showImg.setFlipX(this.flipX);
+        showImg.setFlipY(this.flipY);
         showImg.id = this.flourish.id;
 
         canvas.add(showImg);
