@@ -81,9 +81,12 @@ if ($("body.designs.new").length ||
 
   //------------ click event for flourishes ------------ //
   // when flourish clicked, flourish added to canvas at 0.3 of full size. flourish_id passed through to image when rendered so flourish_id of element is saved to DB and used for re-render.
-  $(".flourishes").click(function(){
+  $(".flourish").click(function(){
     var flourish_id = event.target.id;
     var public_id = event.target.getAttribute('public_id');
+
+    console.log('ev', event.target, event.target.getAttribute('public_id'));
+
     var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/" + public_id + ".png";
 
     fabric.Image.fromURL(src, function(oImg){

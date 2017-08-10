@@ -24,8 +24,6 @@
 
  .flourishes{
    background-color: #DBC3D2;
-   cursor: pointer;
-   cursor: hand;
  }
 
 .center-block {
@@ -239,3 +237,11 @@ p, #designName, button {
 .about{
   width: 100%;
 }
+
+.flourish{
+  cursor: pointer;
+}
+
+/*.flourish:hover{
+  border: 1px dashed gray;
+}*/

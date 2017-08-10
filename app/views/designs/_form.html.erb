@@ -46,10 +46,13 @@
       <% @flourishes.each do |catname, flourishes| %>
       <div id="<%= catname %>" class="tabcontent">
         <% flourishes.each do |f| %>
-        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_65/#{f.location_storage}.png", :id => f.id, public_id: f.name  )%>
+        <%= (cl_image_tag "http://res.cloudinary.com/michelleerica/image/upload/w_85/#{f.location_storage}.png", :id => f.id, public_id: f.name, class: 'flourish'  )%>
         <% end %>
       </div>
       <% end %>
+      <div id="b">
+        bbbbbbbb
+      </div>
     </div>
   </div>
 
