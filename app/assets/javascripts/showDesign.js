@@ -16,6 +16,7 @@ $(document).ready(function(){
 
       var src = "http://res.cloudinary.com/michelleerica/image/upload/v1501323957/"+ e.flourish.name +".png";
 
+      //utilising information saved to Elements database about the Design, the design is re-rendered in the browser for editing
       var flourish = fabric.Image.fromURL(src, function(showImg){
         // used .bind(e) to set the value of 'this'
         showImg.setLeft(this.left); console.log('this.left', this.left);

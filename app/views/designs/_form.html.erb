@@ -50,22 +50,21 @@
         <% end %>
       </div>
       <% end %>
-      <div id="b">
-        bbbbbbbb
       </div>
     </div>
   </div>
+  <br>
+  <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', :back, class:'noLink warn' %></button>
 
   </div>
-  <br>
-    <button type="button" class="btn btn-primary outline" ><%= link_to 'Back', users_path, class:'noLink warn' %></button>
-</div>
+  <!-- <br> -->
 
     <!-- blank canvas - generated in main.js file  -->
     <div class="col-xs-12 col-sm-6 col-md-9">
         <canvas id="mainCanvas" width="850" height="500" class="center-block" designId="<%=@design_id%>"></canvas>
 
       <br>
+
       <div class="baseButton">
         <button type="button" id="saveClButton" class="btn btn-primary outline" >Finalise</button>
 
@@ -76,6 +75,7 @@
             <%=link_to 'Delete design', design_path(@design.id), method: :delete, data: { confirm: 'Are you sure?' }, class:'noLink' %></button>
         <%end%>
       </div>
+    </div>
     </div>
   </div>
 

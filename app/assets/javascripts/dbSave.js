@@ -2,14 +2,12 @@ var design_id = null;
 
 $(document).ready(function(){
 
-  //------------ identify what is on canvas and save ------------
+  //------------ identify what is on canvas and save positions to Elements DB ------------
 
   $("#saveDBButton").click(function(){
-    // debugger;
-
+//
     // ------ function obtaining info for initial save -----//
     if (designData.id === null && design_id === null){
-      // debugger;
 
       // ------ reminder to provide design name  -----//
 
@@ -46,8 +44,8 @@ $(document).ready(function(){
 
         elems.push(elementInfo);
       }
-      console.log(elems);
-      if (elems ===null){
+      // console.log(elems);
+      if (elems === null){
         $('#saveStatus').text('There is nothing to save');
         return;
       }
@@ -58,7 +56,7 @@ $(document).ready(function(){
       // ------ function obtaining info for subsequent saves -----//
 
       var elements = canvas.getObjects();
-      console.log(elements);
+      // console.log(elements);
 
       var elems = [];
 
@@ -84,7 +82,7 @@ $(document).ready(function(){
 
         elems.push(elementInfo);
       }
-      console.log(elems);
+      // console.log(elems);
       if (elems ===null){
         $('#saveStatus').text('There is nothing to save');
         return;
@@ -129,10 +127,9 @@ $(document).ready(function(){
     }).fail(function(xhr, err, status) {
       console.log(xhr, err, status);
     });
-  }; //click handler
+  }; // saveElementData
 
   // function called on subsaq saves to save updated info to DB so element positions tracked
-
   var updateElementData = function(info){
     console.log('UPDATE ELEMENT element info:', info);
     // debugger;
@@ -150,8 +147,6 @@ $(document).ready(function(){
     } else {
       url = design_id
     };
-
-    // debugger;
 
     $.ajax({
       url: url,

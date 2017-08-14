@@ -22,7 +22,7 @@ if ($("body.designs.new").length ||
 
 
   //------------ snap to grid ------------ //
-  // snap to grid (position # is rounded so images are aligned)
+  // snap to grid (position # is rounded so flourishes are aligned on screen)
   canvas.on('object:moving', function(options) {
     options.target.set({
       left: Math.round(options.target.left / grid) * grid,
@@ -60,16 +60,16 @@ if ($("body.designs.new").length ||
   // canvas.add(text);
 
 
-  //------------ draw circle ------------ //
-  $("#b").click(function(){
-
-      var circle = new fabric.Circle({
-        radius: 20, fill: 'green', left: 100, top: 100
-      });
-
-      canvas.add(circle);
-
-  	});
+  // //------------ draw circle ------------ //
+  // $("#b").click(function(){
+  //
+  //     var circle = new fabric.Circle({
+  //       radius: 20, fill: 'green', left: 100, top: 100
+  //     });
+  //
+  //     canvas.add(circle);
+  //
+  // 	});
 
     //------------ save canvas as jpeg ------------ //
 
@@ -99,28 +99,17 @@ if ($("body.designs.new").length ||
   // ------------ delete element from canvas ------------ //
 
   $("#delete").click(function(){
-    // canvas.isDrawingMode = false;
     deleteObjects();
   });
 
   var deleteObjects = function(){
   	var activeObject = canvas.getActiveObject(),
       activeGroup = canvas.getActiveGroup();
-      console.log('TO DELETE');
       if (activeObject) {
         if (confirm('Are you sure?')) {
           canvas.remove(activeObject);
         }
       }
-      // else if (activeGroup) {
-      //   if (confirm('Are you sure?')) {
-      //     var objectsInGroup = activeGroup.getObjects();
-      //     canvas.discardActiveGroup();
-      //     objectsInGroup.forEach(function(object) {
-      //       canvas.remove(object);
-      //     });
-      //   }
-      // }
   }
 
 

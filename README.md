@@ -24,19 +24,20 @@ When I first started bullet journalling, I had a couple of problems:
 
 In an attempt to solve these problems, I made the Bullet Journal Collective.
 
-The basic premise is to help new users play with layout without having to hand draw each iteration out.
+The basic premise is to help new bullet journallers play with layout without having to hand draw each iteration out.
 
-Once a user starts designing, they can save their creation (and return to it later to continue to edit) or if they're happy with the content, they can publish their design and share with others. Users can also save their designs down to their desktop at any point in time prior to publication.
+Once a user starts designing, they can save their creation (and return to it later to continue to edit) or if they're happy with the content, they can publish their design and share with others. Users can also save their designs down to their desktop at any point prior to publication.
 
 *Live version*
 https://projectbujo.herokuapp.com/
 
 ##Packages used
   * fabricjs
-  * jquery-rails
+  * jquery
   * cloudinary
   * bootstrap
   * fileSaver
+  * animate.css
 
 Features
   Users can:
@@ -45,12 +46,12 @@ Features
 * publish their designs for future reference
 * access other users' published designs
 
-Known bugs
-  *
 
 Future releases
-  *
+  * Users to be able to upload their own flourishes
+  * Users to be able to 'fork' another user's published design and edit their own version of it
 
-Lessons learned / wins
+Lessons learned
   * Interrelationship between front-end and back-end web development, particularly how to send information between the two ends.
-  * When I started the project, I didn't appreciate how back-end heavy my project needed to be for it to have the functionality I wanted, so in a way, I tricked myself into doing a full stack web app instead of the front end-y project I had initially intended on creating. Lack of foresight aside, I'm really happy it worked out this way. As a result, I learnt a LOT about full stack web development, and brought together the knowledge I've gained over the 12 weeks of my GA Web Development Immersive experience.
+  * The importance of having a clear vision and allowing ideas to evolve once the basic product is developed.
+  * UX considerations when developing an idea.

@@ -81,7 +81,6 @@ div.tab button.active {
 .toolkit{
   height: 500px;
   background-color: #DBC3D2;
-
 }
 
 
@@ -190,7 +189,6 @@ p, #designName, button {
   font-family: 'Lora', serif;
   font-size: 18px;
   line-height: 120%;
-
 }
 
 #explain {
@@ -242,6 +240,6 @@ p, #designName, button {
   cursor: pointer;
 }
 
-/*.flourish:hover{
+.flourish:hover{
   border: 1px dashed gray;
-}*/
+}
