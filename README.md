@@ -29,7 +29,7 @@ The basic premise is to help new bullet journallers play with layout without hav
 Once a user starts designing, they can save their creation (and return to it later to continue to edit) or if they're happy with the content, they can publish their design and share with others. Users can also save their designs down to their desktop at any point prior to publication.
 
 *Live version*
-https://projectbujo.herokuapp.com/
+https://bujoco.herokuapp.com/
 
 ##Packages used
   * fabricjs
